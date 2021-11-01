@@ -7,8 +7,14 @@
         android:icon="@drawable/ic_map"
         />
     <item
+    android:id="@+id/addFragment"
+    android:title="Add Post"
+    android:icon="@drawable/ic_add_post"
+    />
+    <item
         android:id="@+id/profileFragment"
         android:title="Profile"
         android:icon="@drawable/ic_profile"
         />
+
 </menu>
