@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">GroupProject</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="map_fragment">Map Fragment</string>
+   <!-- <string name="map_fragment">Map Fragment</string> -->
+    <string name="textview">TextView</string>
 </resources>
