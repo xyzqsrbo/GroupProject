@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_gallery"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/todo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="273dp"
@@ -70,7 +70,7 @@
             android:id="@+id/textInputEditText"
             android:layout_width="189dp"
             android:layout_height="103dp"
-            android:hint="Description"
+            android:hint="@string/description"
             android:hintTextColor="#757575" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +80,9 @@
         android:hint="@string/location"
         android:hintTextColor="#757575"
         android:minHeight="48dp"
-        tools:layout_editor_absoluteX="190dp"
-        tools:layout_editor_absoluteY="58dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

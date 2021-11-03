@@ -11,4 +11,6 @@
     <string name="textview">TextView</string>
     <string name="add_post">Add Post</string>
     <string name="location">Location</string>
+    <string name="description">Description</string>
+    <string name="todo">TODO</string>
 </resources>
