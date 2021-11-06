@@ -11,4 +11,8 @@
     <string name="description">Description</string>
     <string name="todo">TODO</string>
     <string name="post">Post</string>
+    <string name="location_of_the_image">Location of the image:</string>
+    <string name="draft">Draft</string>
+    <string name="describe_the_picture">Describe the picture</string>
+    <string name="cancel">cancel</string>
 </resources>
