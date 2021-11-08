@@ -43,8 +43,9 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="300dp"
-        android:text="@string/description"
         android:gravity="center"
+        android:text="@string/description"
+        android:background="@color/lightGray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
@@ -55,7 +56,7 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="365dp"
         android:ems="10"
@@ -93,10 +94,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/commentSection"
         android:layout_width="273dp"
         android:layout_height="129dp"
         android:gravity="center"
+        android:background="@color/lightGray"
         android:text="@string/comment_section"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,4 +117,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
         app:layout_constraintVertical_bias="0.13999999" />
+
+    <Button
+        android:id="@+id/likeButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="375dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/like"
+        android:icon="@drawable/ic_baseline_thumb_up_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
