@@ -44,13 +44,13 @@
         android:layout_width="55dp"
         android:layout_height="57dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="Add Friends Button"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/btnSettings"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constringEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_addFriend"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:contentDescription="Add Friends Button" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_friend"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ScrollView
         android:id="@+id/scrPosts"
