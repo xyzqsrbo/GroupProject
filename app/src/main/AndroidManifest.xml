@@ -16,9 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupProject">
         <activity
-            android:name=".LogInActivity"
+            android:name=".SignUpActivity"
             android:exported="true"
             android:parentActivityName=".MapsActivity"/>
+        <activity
+            android:name=".LogInActivity"
+            android:exported="true"
+            android:parentActivityName=".MapsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

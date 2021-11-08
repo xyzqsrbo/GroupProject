@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class LogInActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_log_in)
+        setContentView(R.layout.activity_sign_up)
 
         val actionBar = supportActionBar
-        actionBar!!.title = "Sign In"
+        actionBar!!.title = "Sign Up"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         findViewById<Button>(R.id.button).setOnClickListener {
