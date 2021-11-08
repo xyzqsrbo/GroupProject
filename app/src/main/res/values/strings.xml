@@ -13,6 +13,9 @@
     <string name="post">Post</string>
     <string name="location_of_the_image">Location of the image:</string>
     <string name="draft">Draft</string>
-    <string name="describe_the_picture">Describe the picture</string>
+    <string name="describe_the_picture">Describe the picture:</string>
     <string name="cancel">cancel</string>
+    <string name="comment_section">Comment Section</string>
+    <string name="description">Description</string>
+    <string name="comments">Comments</string>
 </resources>

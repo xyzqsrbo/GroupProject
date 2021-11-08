@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupProject">
         <activity
+            android:name=".InspectPostActivity"
+            android:exported="true" />
+        <activity
             android:name=".PostActivity"
             android:exported="true" />
         <!--
