@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.example.groupproject.databinding.ActivityMapsBinding
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.appcompat.widget.Toolbar
@@ -23,6 +24,7 @@ import androidx.core.view.iterator
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import java.lang.Exception
 
@@ -31,7 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    lateinit var topBar : Toolbar
+    lateinit var topBar : ActionBar
     lateinit var tabledrawer : DrawerLayout
     lateinit var drawerToggle : ActionBarDrawerToggle
 
@@ -41,16 +43,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navView : NavigationView = findViewById(R.id.nvView)
-        topBar = findViewById(R.id.toolbar)
-        setSupportActionBar(topBar)
-        tabledrawer = findViewById(R.id.drawer_layout)
-        drawerToggle = setupDrawerToggle()
-        drawerToggle.isDrawerIndicatorEnabled = true
-        drawerToggle.syncState()
-        tabledrawer.addDrawerListener(drawerToggle)
+        var navView : BottomNavigationView = findViewById(R.id.nvView)
         setupDrawerContent(navView)
-
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -75,9 +69,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
-    private fun setupDrawerContent(navigationView: NavigationView) {
-        navigationView.setNavigationItemSelectedListener {
-            it.isChecked = true
+    private fun setupDrawerContent(navigationView: BottomNavigationView) {
+        navigationView.setOnItemSelectedListener {
 
             when(it.itemId){
                 R.id.DorasMap -> selectDrawerItem(BlankFragment(), "fuck you" )
@@ -95,22 +88,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-
-
-
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-            R.id.home -> tabledrawer.openDrawer(GravityCompat.START)
-
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun setupDrawerToggle(): ActionBarDrawerToggle{
-        return ActionBarDrawerToggle(this, tabledrawer, topBar , R.string.drawer_open,  R.string.drawer_close)
-
-    }
 }

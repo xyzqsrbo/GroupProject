@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/DorasMap"
+        android:enabled="true"
         android:title="Doras's Mappins" />
     <item
         android:id="@+id/cheapSkate"
+        android:enabled="true"
         android:title="Terms and Conditions" />
     <item
         android:id="@+id/settings"
+        android:enabled="true"
         android:title="Settings" />
 </menu>
