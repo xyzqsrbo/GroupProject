@@ -16,7 +16,7 @@
     <string name="describe_the_picture">Describe the picture:</string>
     <string name="cancel">cancel</string>
     <string name="comment_section">Comment Section</string>
-    <string name="description">Description</string>
     <string name="comments">Comments</string>
     <string name="like">like</string>
+    <string name="back">back</string>
 </resources>
