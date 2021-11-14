@@ -10,6 +10,17 @@
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_log_in.xml" value="0.28306159420289856" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_maps.xml" value="0.28306159420289856" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/layout/activity_inspect_post.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/activity_post.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/post.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/profile_page.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/search_page.xml" value="0.19270833333333334" />
       </map>
     </option>
   </component>
