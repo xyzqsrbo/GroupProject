@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".PostActivity">
 
     <ImageView
@@ -28,7 +27,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="25dp"
-        android:hint="location"
+        android:hint="@string/location"
         android:gravity="center"
         android:inputType="text"
         android:background="@color/lightGray"
@@ -50,7 +49,7 @@
         android:layout_marginBottom="150dp"
         android:background="@color/lightGray"
         android:gravity="center"
-        android:hint="description"
+        android:hint="@string/description"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +75,7 @@
         android:layout_marginTop="88dp"
         android:layout_marginEnd="159dp"
         android:layout_marginBottom="151dp"
-        android:text="post"
+        android:text="@string/post"
         android:backgroundTint="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +89,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginStart="150dp"
         android:layout_marginBottom="12dp"
-        android:text="location of the image"
+        android:text="@string/location_of_the_image"
         android:textStyle="bold"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/location"
@@ -106,7 +105,7 @@
         android:layout_marginTop="88dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="151dp"
-        android:text="draft"
+        android:text="@string/draft"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/post"
@@ -120,7 +119,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="8dp"
-        android:text="Describe the Picture"
+        android:text="@string/describe_the_picture"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/description"
@@ -136,12 +135,25 @@
         android:layout_marginTop="19dp"
         android:layout_marginEnd="151dp"
         android:layout_marginBottom="84dp"
-        android:text="cancel"
+        android:text="@string/cancel"
         android:backgroundTint="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post" />
+
+    <Button
+        android:id="@+id/uploadImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_image"
+        android:background="@drawable/button_transparent"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/addImage"
+        app:layout_constraintEnd_toEndOf="@+id/addImage"
+        app:layout_constraintStart_toStartOf="@+id/addImage"
+        app:layout_constraintTop_toTopOf="@+id/addImage" />
 
     <!--
     <androidx.fragment.app.FragmentContainerView
