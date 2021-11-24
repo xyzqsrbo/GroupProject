@@ -19,7 +19,7 @@
         <entry key="app/src/main/res/drawable/ic_map.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/textview_border.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/layout/activity_inspect_post.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_inspect_post.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/activity_post.xml" value="0.18704710144927536" />
@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/layout/post.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/profile_page.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/search_page.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.25833333333333336" />
       </map>
     </option>
   </component>

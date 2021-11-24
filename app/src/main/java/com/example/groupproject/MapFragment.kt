@@ -1,5 +1,6 @@
 package com.example.groupproject
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,8 +28,15 @@ class MapFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-    }
 
+    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        activity?.let{
+            val intent = Intent (it, MapsActivity::class.java)
+            it.startActivity(intent)
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,4 +64,5 @@ class MapFragment : Fragment() {
                 }
             }
     }
+
 }

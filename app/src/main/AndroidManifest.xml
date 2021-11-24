@@ -19,12 +19,14 @@
             android:name=".InspectPostActivity"
             android:exported="true" />
 
-                <activity
-                    android:name=".PostActivity"
-                    android:exported="true" />
- <!-- This is just commented for right now that I don't have a way to navigate to my own page, I commented this so I can test my own results.
+        <activity
+            android:name=".PostActivity"
+            android:exported="true" />
+        <!-- This is just commented for right now that I don't have a way to navigate to my own page, I commented this so I can test my own results.
+
           <activity android:name=".PostActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,7 +44,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <activity
             android:name=".MapsActivity"
             android:exported="true"
