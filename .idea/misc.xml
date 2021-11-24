@@ -14,6 +14,10 @@
         <entry key="app/src/main/res/drawable/button_transparent.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/ic_add_post.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_chevron_left_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_thumb_up_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_map.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/textview_border.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/layout/activity_inspect_post.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.19270833333333334" />
