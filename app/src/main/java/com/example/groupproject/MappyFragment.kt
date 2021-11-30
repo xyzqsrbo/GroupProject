@@ -13,7 +13,7 @@ import com.google.android.gms.maps.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private lateinit var googleMap: GoogleMap
+private lateinit var mMap: GoogleMap
         lateinit var mMapView: MapView
 
 /**
@@ -21,7 +21,7 @@ private lateinit var googleMap: GoogleMap
  * Use the [BlankFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BlankFragment : Fragment() {
+class BlankFragment : Fragment(), OnMapReadyCallback {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -31,22 +31,23 @@ class BlankFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val rootView: View = inflater.inflate(R.layout.fragment_blank, container, false)
-        mMapView = rootView.findViewById(R.id.mapView)
-        mMapView.onCreate(savedInstanceState)
-        mMapView.onResume()
-        MapsInitializer.initialize(activity?.applicationContext)
-        mMapView.getMapAsync( OnMapReadyCallback {
-            googleMap = it
 
-            val sydney = LatLng(-34.0, 151.0)
-            googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-
-        })
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
+        mapFragment.getMapAsync(this)
         return rootView
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
 
 }
+

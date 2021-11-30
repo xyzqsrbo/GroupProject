@@ -29,7 +29,7 @@ import com.google.android.material.navigation.NavigationView
 import java.lang.Exception
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity() {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -46,10 +46,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var navView : BottomNavigationView = findViewById(R.id.nvView)
         setupDrawerContent(navView)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+
     }
 
     /**
@@ -61,14 +58,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
     private fun setupDrawerContent(navigationView: BottomNavigationView) {
         navigationView.setOnItemSelectedListener {
 
@@ -82,7 +71,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun selectDrawerItem(fragment: Fragment, title: String) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frameLayout, fragment)
+        fragmentTransaction.replace(R.id.fragmmentlayout, fragment)
         fragmentTransaction.commit()
         setTitle(title)
 
