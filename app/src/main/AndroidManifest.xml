@@ -17,8 +17,7 @@
         android:theme="@style/Theme.GroupProject">
         <activity
             android:name=".InspectPostActivity"
-            android:exported="true" />
-
+            android:exported="true"/>
         <activity
             android:name=".PostActivity"
             android:exported="true" />
@@ -50,7 +49,6 @@
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

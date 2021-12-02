@@ -13,4 +13,9 @@
     <string name="description">description</string>
     <string name="location">location</string>
     <string name="upload_image">Upload Image</string>
+    <string name="Dislike">Dislike</string>
+    <string name="Like">Like</string>
+    <string name="Comments">Comments</string>
+    <string name="comment_section">Comment Section</string>
+    <string name="Description">Description</string>
 </resources>
