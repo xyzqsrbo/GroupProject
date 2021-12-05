@@ -1,8 +1,13 @@
 package com.example.groupproject
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 
 class InspectPostActivity : AppCompatActivity() {
@@ -11,6 +16,7 @@ class InspectPostActivity : AppCompatActivity() {
     private lateinit var likeButton: Button
     private lateinit var dislikeButton: Button
     private lateinit var likeIncrementer: TextView
+    private lateinit var dislikeIncrementer: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,15 +25,15 @@ class InspectPostActivity : AppCompatActivity() {
         likeButton = findViewById(R.id.likeButton)
         likeIncrementer = findViewById(R.id.likeIncrementer)
         dislikeButton = findViewById(R.id.dislikeButton)
+        dislikeIncrementer = findViewById(R.id.dislikeIncrementer)
 
         likeButton.setOnClickListener {
             likeCounter++
             likeIncrementer.setText("$likeCounter")
         }
-        /*
         dislikeButton.setOnClickListener {
             dislikeCounter++
+            dislikeIncrementer.setText("$dislikeCounter")
         }
-         */
     }
 }
