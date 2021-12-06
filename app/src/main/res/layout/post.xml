@@ -1,74 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TableLayout
+    android:layout_height="133dp"
+    android:layout_margin="4dp"
+    app:cardElevation="10dp"
+    app:contentPadding="4dp">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:gravity="center"
+        android:padding="4dp">
+
+        <FrameLayout
+            android:id="@+id/frame_layoutMod0"
+            android:layout_width="133dp"
+            android:layout_height="133dp"
+            android:layout_marginEnd="2dp">
+
             <ImageView
-                android:id="@+id/imgPost"
-                android:layout_width="366dp"
-                android:layout_height="270dp"
-                android:layout_weight="1"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-        </TableRow>
+                android:id="@+id/imgPostMod0"
+                android:layout_width="133dp"
+                android:layout_height="133dp"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:src="@drawable/ic_add_friend" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/btnUpvote"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:backgroundTint="#00FFFFFF"
-                android:contentDescription="Upvote"
-                android:minHeight="48dp"
-                app:srcCompat="@drawable/ic_upvote" />
-
-            <ImageButton
-                android:id="@+id/btnDownVote"
+            <TextView
+                android:id="@+id/txtPostMod0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:backgroundTint="#00FFFFFF"
-                android:contentDescription="Down Vote"
-                android:minHeight="48dp"
-                app:srcCompat="@drawable/ic_downvote" />
-
-            <Space
-                android:id="@+id/spacer"
-                android:layout_width="200dp"
-                android:layout_height="48dp"
-                android:layout_weight="0" />
-
-            <ImageButton
-                android:id="@+id/btnComment"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:backgroundTint="#00FFFFFF"
-                android:contentDescription="Comment"
-                android:minHeight="48dp"
-                app:srcCompat="@drawable/ic_comment" />
-
-        </TableRow>
-        <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-            <EditText
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Post description"/>
-        </TableRow>
-    </TableLayout>
-</LinearLayout>
+                android:layout_gravity="bottom"
+                android:background="#74FFFFFF"
+                android:text="@string/username" />
+        </FrameLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

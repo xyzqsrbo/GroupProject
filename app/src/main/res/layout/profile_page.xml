@@ -3,29 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/sample_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+    android:layout_height="match_parent"
+    android:layout_gravity="top">
 
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="128dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/user_profile_picture"
+        app:layout_constraintBottom_toTopOf="@+id/textName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="User Profile Picture" />
+        app:srcCompat="@drawable/ic_user_picture" />
 
     <ImageButton
         android:id="@+id/btnSettings"
@@ -33,55 +24,62 @@
         android:layout_height="57dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/settings_button"
         android:src="@drawable/ic_setting"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:contentDescription="Settings Button" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/btnAddFriend"
         android:layout_width="55dp"
         android:layout_height="57dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="Add Friends Button"
+        android:contentDescription="@string/add_friends_button"
+        android:paddingStart="0dp"
         android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSettings"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_friend"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ScrollView
-        android:id="@+id/scrPosts"
-        android:layout_width="324dp"
-        android:layout_height="470dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/sample_name"
+        app:layout_constraintBottom_toTopOf="@+id/txtBiography"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck">
+        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <EditText
+    <TextView
         android:id="@+id/txtBiography"
         android:layout_width="388dp"
         android:layout_height="73dp"
+        android:layout_marginStart="12dp"
         android:ems="10"
+        app:layout_constraintHorizontal_bias="0.0"
         android:gravity="start|top"
-        android:hint="No Biography Available"
-        android:inputType="textMultiLine"
+        android:hint="@string/no_biography_available"
+        android:lines="4"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintBottom_toTopOf="@+id/scrPosts"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textName"
-        android:editable="false"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="415dp"
+        tools:listitem="@layout/post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBiography" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
