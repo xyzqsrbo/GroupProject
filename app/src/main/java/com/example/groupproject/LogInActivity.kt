@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 
 class LogInActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
