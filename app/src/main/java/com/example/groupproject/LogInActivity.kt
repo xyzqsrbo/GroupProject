@@ -33,7 +33,15 @@ class LogInActivity : AppCompatActivity() {
             var txt_password = password.text.toString()
 
             loginUser(txt_email, txt_password);
+
+            if (txt_email.isEmpty() || txt_password.isEmpty()) {
+                Toast.makeText(this, "Empty credentials!", Toast.LENGTH_SHORT).show()
+            } else {
+                loginUser(txt_email, txt_password);
+            }
         }
+
+
     }
 
     private fun loginUser(txtEmail: String, txtPassword: String) {
