@@ -15,6 +15,7 @@ import android.widget.*
 import androidx.core.text.HtmlCompat
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
 
 class PostActivity : AppCompatActivity() {
     private lateinit var button: Button
@@ -23,6 +24,7 @@ class PostActivity : AppCompatActivity() {
     private lateinit var locationText: EditText
     private lateinit var cancelButton: Button
     private lateinit var postButton: Button
+    private lateinit var auth:FirebaseAuth
 
     companion object{
         val IMAGE_REQUEST_CODE = 100
@@ -39,8 +41,7 @@ class PostActivity : AppCompatActivity() {
         locationText = findViewById(R.id.location)
         cancelButton = findViewById(R.id.cancel)
         postButton = findViewById(R.id.post)
-
-
+        auth = FirebaseAuth.getInstance()
 
         // This button will just send the user back to the previous activity
         cancelButton.setOnClickListener{
@@ -87,6 +88,7 @@ class PostActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+            postContent(locationText.text.toString(), editText.text.toString())
             /*
             else -> {
             val location: String = locationText.text.toString().trim { it <= ' '}
@@ -119,6 +121,7 @@ class PostActivity : AppCompatActivity() {
         // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore
         val post = hashMapOf(
+            "uid" to auth.currentUser!!.uid,
             "titleLocation" to location,
             "Description" to description
         )
