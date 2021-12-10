@@ -121,7 +121,7 @@ class PostActivity : AppCompatActivity() {
         // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore
         val post = hashMapOf(
-            "uid" to auth.currentUser!!.uid,
+       //    "uid" to auth.currentUser!!.uid,
             "titleLocation" to location,
             "Description" to description
         )
@@ -129,6 +129,9 @@ class PostActivity : AppCompatActivity() {
         db.collection("Add Post")
             .add(post)
             .addOnSuccessListener { documentReference ->
+                Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, InspectPostActivity::class.java))
+                finish()
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
