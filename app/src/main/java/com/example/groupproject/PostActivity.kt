@@ -1,18 +1,20 @@
 package com.example.groupproject
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.text.HtmlCompat
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PostActivity : AppCompatActivity() {
     private lateinit var button: Button
@@ -20,6 +22,7 @@ class PostActivity : AppCompatActivity() {
     private lateinit var editText: EditText
     private lateinit var locationText: EditText
     private lateinit var cancelButton: Button
+    private lateinit var postButton: Button
 
     companion object{
         val IMAGE_REQUEST_CODE = 100
@@ -35,6 +38,9 @@ class PostActivity : AppCompatActivity() {
         editText = findViewById(R.id.description)
         locationText = findViewById(R.id.location)
         cancelButton = findViewById(R.id.cancel)
+        postButton = findViewById(R.id.post)
+
+
 
         // This button will just send the user back to the previous activity
         cancelButton.setOnClickListener{
@@ -63,12 +69,38 @@ class PostActivity : AppCompatActivity() {
                 locationText.setBackgroundColor((if (s.isEmpty()) originalColor else haveTextColor))
             }
         })
+        // This will add to the database when the button is clicked
+        postButton.setOnClickListener{
+            when {
+                TextUtils.isEmpty(locationText.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@PostActivity,
+                        "Please enter a location.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                TextUtils.isEmpty(editText.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@PostActivity,
+                        "Please enter a description.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            /*
+            else -> {
+            val location: String = locationText.text.toString().trim { it <= ' '}
+        }
+             */
+            // Creating variables for values in location texts.
+            val location = locationText.text.toString()
+        }
 
         // I want to have an <hr> tag below the location and description.
         val locationTextView: TextView = findViewById(R.id.locationView)
-        val locationText = getString(R.string.location_of_the_image)
+        val locationTextImage = getString(R.string.location_of_the_image)
         val tagHandler = HtmlTagHandler()
-        locationTextView.text = HtmlCompat.fromHtml(locationText, HtmlCompat.FROM_HTML_MODE_LEGACY, null, tagHandler)
+        locationTextView.text = HtmlCompat.fromHtml(locationTextImage, HtmlCompat.FROM_HTML_MODE_LEGACY, null, tagHandler)
 
         /*
         val html = "Hello <br> hai<br> I am fine <hr> Another line here <hr><hr>"
@@ -83,7 +115,23 @@ class PostActivity : AppCompatActivity() {
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
-
+    private fun postContent(location: String, description: String) {
+        // Access a Cloud Firestore instance from your Activity
+        val db = Firebase.firestore
+        val post = hashMapOf(
+            "titleLocation" to location,
+            "Description" to description
+        )
+        // Add a new document with a generated ID
+        db.collection("Add Post")
+            .add(post)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -94,6 +142,4 @@ class PostActivity : AppCompatActivity() {
     public final fun cancel(view: View): Unit{
         finish()
     }
-
 }
-

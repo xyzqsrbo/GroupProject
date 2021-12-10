@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "836667560909",
+    "project_id": "mappins-b8aed",
+    "storage_bucket": "mappins-b8aed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836667560909:android:2a00535e03abaf25d76a84",
+        "android_client_info": {
+          "package_name": "com.example.groupproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836667560909-78v2skhmsa83t855nkbatok81u4d5n4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABYdiAPdzD2b0LPYUUBeZxi9aJ7jKyffE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836667560909-78v2skhmsa83t855nkbatok81u4d5n4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

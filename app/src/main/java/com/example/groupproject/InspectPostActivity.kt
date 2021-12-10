@@ -2,6 +2,7 @@ package com.example.groupproject
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -17,6 +18,7 @@ class InspectPostActivity : AppCompatActivity() {
     private lateinit var dislikeButton: Button
     private lateinit var likeIncrementer: TextView
     private lateinit var dislikeIncrementer: TextView
+    private lateinit var locationTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
