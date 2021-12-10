@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
 
+    //global variables for the page
     private lateinit var email:EditText
     private lateinit var password:EditText
     private lateinit var password2:EditText
@@ -22,14 +23,19 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var signin:Button
     private lateinit var auth:FirebaseAuth
 
+    /*
+        Do this when you load the page, set all my variables for text boxes and buttons as well as setup listeners for the buttons
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        //setup the top bar to sign up
         val actionBar = supportActionBar
         actionBar!!.title = "Sign Up"
         actionBar.setDisplayHomeAsUpEnabled(true)
 
+        //setup all my elements on the page to my variables
         email = findViewById(R.id.editTextTextPersonName)
         password = findViewById(R.id.editTextTextPassword)
         password2 = findViewById(R.id.editTextTextPassword2)
@@ -40,12 +46,15 @@ class SignUpActivity : AppCompatActivity() {
         signin = findViewById(R.id.signin)
         auth = FirebaseAuth.getInstance()
 
+        //listener for the sign in button
         signin.setOnClickListener {
             startActivity(Intent(this, LogInActivity::class.java))
         }
 
+        //listener for the register button
         register.setOnClickListener {
 
+            //get all the text fields values and store them in variables
             var txt_email = email.text.toString()
             var txt_password = password.text.toString()
             var txt_password2 = password2.text.toString()
@@ -53,6 +62,7 @@ class SignUpActivity : AppCompatActivity() {
             var txt_fname = fname.text.toString()
             var txt_lname = lname.text.toString()
 
+            //error checking the input
             if (txt_email.isEmpty() || txt_password.isEmpty() || txt_username.isEmpty() || txt_fname.isEmpty() || txt_lname.isEmpty()) {
                 Toast.makeText(this, "Empty credentials!", Toast.LENGTH_SHORT).show()
             } else if (txt_password.length < 6) {
@@ -65,8 +75,19 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    /*
+        registers a user to the database
+
+        @txtEmail: email of user
+        @txtPassword: password of user
+        @txtUsername: username of user
+        @txtFname: first name of user
+        @txtLname: last name of user
+     */
     private fun registerUser(txtEmail: String, txtPassword: String, txtUsername: String, txtFname: String, txtLname: String) {
+        // try to add user to the database
         auth.createUserWithEmailAndPassword(txtEmail, txtPassword).addOnCompleteListener { task ->
+            //check if it successfully added it
             if (task.isSuccessful) {
                 val db = Firebase.firestore
                 val user = hashMapOf (
@@ -76,6 +97,7 @@ class SignUpActivity : AppCompatActivity() {
                             "last" to txtLname
                         )
 
+                //add extra info not needed for auth linked ot the account in the Account collection
                 db.collection("Account")
                     .add(user)
                     .addOnSuccessListener { documentReference ->
