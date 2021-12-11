@@ -102,7 +102,7 @@ class SignUpActivity : AppCompatActivity() {
                     .add(user)
                     .addOnSuccessListener { documentReference ->
                         Toast.makeText(this, "Registered user!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, LogInActivity::class.java))
+                        startActivity(Intent(this, MapsActivity::class.java))
                         finish()
                     }
                     .addOnFailureListener { e ->
