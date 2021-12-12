@@ -13,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.groupproject.databinding.ActivityMapsBinding
+import com.google.android.gms.maps.model.Marker
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -60,6 +62,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         var location:LatLng
+        var marker:Marker
+        var markers:ArrayList<Marker> = ArrayList()
 
         val db = Firebase.firestore
         db.collection("Post")
@@ -67,7 +71,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     location = LatLng(document.getDouble("lat")!!.toDouble(), document.getDouble("long")!!.toDouble())
-                    mMap.addMarker(MarkerOptions().position(location).title(document.getString("Name")))
+                    marker = mMap.addMarker(MarkerOptions().position(location).title(document.getString("Name")))
+                    markers.add(marker)
+                }
+                mSearchText.doAfterTextChanged {
+                    for (post in markers) {
+                        if (!post.title.contains(mSearchText.text.toString(), ignoreCase = true)) {
+                            post.setVisible(false)
+                        } else {
+                            post.setVisible(true)
+                        }
+                    }
                 }
             }
             .addOnFailureListener { exception ->
