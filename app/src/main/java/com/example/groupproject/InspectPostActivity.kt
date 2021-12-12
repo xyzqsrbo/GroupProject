@@ -9,9 +9,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -23,39 +26,61 @@ class InspectPostActivity : AppCompatActivity() {
     private lateinit var likeIncrementer: TextView
     private lateinit var dislikeIncrementer: TextView
     private lateinit var locationTextView: TextView
+    private lateinit var previousArrow: Button
+    private lateinit var nextArrow: Button
+    private lateinit var reference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inspect_post)
 
+        // Linking all of the elements to their views
         likeButton = findViewById(R.id.likeButton)
         likeIncrementer = findViewById(R.id.likeIncrementer)
         dislikeButton = findViewById(R.id.dislikeButton)
         dislikeIncrementer = findViewById(R.id.dislikeIncrementer)
         locationTextView = findViewById(R.id.locationView)
+        previousArrow = findViewById(R.id.backArrow)
+        nextArrow = findViewById(R.id.forwardArrow)
 
+        reference = FirebaseDatabase.getInstance().reference
+
+        // When clicked, it increments the like count
         likeButton.setOnClickListener {
             likeCounter++
             likeIncrementer.setText("$likeCounter")
         }
+        // When clicked, it decrements the dislike counts
         dislikeButton.setOnClickListener {
             dislikeCounter++
             dislikeIncrementer.setText("$dislikeCounter")
         }
+        // Sets the text to the database location
+        locationTextView.setText(getLocation())
 
+        nextArrow.setOnClickListener {
+
+        }
     }
-    private fun getLocation(location: String) {
+    /*
+    private fun getDescription(): String {
+        reference.child("Description").addChildEventListener()
+    }
+     */
+    private fun getLocation(): String {
         val db = Firebase.firestore
-
-        db.collection("Add Post")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
+        val userLocation = db.collection("Add Post").document()
+       var location = userLocation.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d(TAG, "No such document")
                 }
             }
             .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
+                Log.d(TAG, "get failed with ", exception)
             }
+        return location.toString()
     }
 }

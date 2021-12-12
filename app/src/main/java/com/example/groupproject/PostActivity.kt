@@ -97,7 +97,7 @@ class PostActivity : AppCompatActivity() {
             // Creating variables for values in location texts.
             val location = locationText.text.toString()
         }
-
+        cancelButton.setOnClickListener { cancel() }
         // I want to have an <hr> tag below the location and description.
         val locationTextView: TextView = findViewById(R.id.locationView)
         val locationTextImage = getString(R.string.location_of_the_image)
@@ -125,6 +125,12 @@ class PostActivity : AppCompatActivity() {
             "titleLocation" to location,
             "Description" to description
         )
+        // Set the database document to be the location of the post.
+        db.collection("Add Post").document(location).set(post)
+        Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, InspectPostActivity::class.java))
+        finish()
+        /* The code above is much shorter.
         // Add a new document with a generated ID
         db.collection("Add Post")
             .add(post)
@@ -137,6 +143,7 @@ class PostActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
+         */
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -145,7 +152,7 @@ class PostActivity : AppCompatActivity() {
             button.setY(225F) // This will move the button down below the image so it is not overlapping it.
         }
     }
-    public final fun cancel(view: View): Unit{
+    private fun cancel(){
         finish()
     }
 }
