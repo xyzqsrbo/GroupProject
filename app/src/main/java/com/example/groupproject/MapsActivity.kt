@@ -45,9 +45,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        findViewById<ImageButton>(R.id.ImageButton1).setOnClickListener {
-            startActivity(Intent(this, LogInActivity::class.java))
-        }
     }
 
     /**
