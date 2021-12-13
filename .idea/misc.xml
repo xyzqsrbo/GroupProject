@@ -12,15 +12,21 @@
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_inspect_post.xml" value="0.121875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_maps.xml" value="0.5421875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_post.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_searched_profile.xml" value="0.2421875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.121875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/fragment_add.xml" value="0.121875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/fragment_map.xml" value="0.121875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/fragment_profile.xml" value="0.2421875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/post.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/profile_page.xml" value="0.2421875" />
-        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/search_page.xml" value="0.5421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/row_item.xml" value="0.1" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/row_items.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/search_activity.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/search_page.xml" value="0.2421875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/settings_page.xml" value="0.5421875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/menu/bottom_menu.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/menu/menu.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/menu/search.xml" value="0.2421875" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/white_border.xml" value="0.3828125" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_log_in.xml" value="0.28306159420289856" />

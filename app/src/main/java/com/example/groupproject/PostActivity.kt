@@ -1,4 +1,4 @@
-package com.example.groupproject.profile_page
+package com.example.groupproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -3,7 +3,6 @@ package com.example.groupproject.profile_page
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.groupproject.PostSupplier
 import com.example.groupproject.showToast
 import kotlinx.android.synthetic.main.profile_page.*
 
@@ -18,7 +17,7 @@ class PostsActivity : AppCompatActivity() {
         //setContentView(R.layout.PostInspect)
         showToast("Post was Clicked!")
 
-        setupRecyclerView()
+        //setupRecyclerView()
     }
 
     private fun setupRecyclerView(){
@@ -26,7 +25,7 @@ class PostsActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
 
-        val adapter = PostsAdapter(this, PostSupplier.post)
+        val adapter = PostsAdapter(this, UserSupplier.user.posts)
         recyclerView.adapter = adapter
     }
 }

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.util.Log
-import com.example.groupproject.Post
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.post.view.*
@@ -39,7 +38,6 @@ class PostsAdapter(val context: Context, private val posts: List<Post>) :
         init {
             itemView.setOnClickListener {
                 currentPost?.let {
-                    //context.showToast(currentPost!!.postId + " Clicked!")
                     Log.i(TAG, currentPost!!.postId + " Clicked!")
                     Toast.makeText(context, currentPost!!.postId + " Clicked!", Toast.LENGTH_SHORT).show()
                 }
