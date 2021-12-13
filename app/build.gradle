@@ -46,6 +46,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-analytics-ktx:20.0.0'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -66,4 +68,5 @@ dependencies {
     // For Database Reference to work
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
     implementation 'com.google.firebase:firebase-database:19.2.0'
+
 }

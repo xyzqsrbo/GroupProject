@@ -1,21 +1,28 @@
 package com.example.groupproject
 
-import android.content.ContentValues.TAG
+import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
-import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import java.net.URI
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PostActivity : AppCompatActivity() {
     private lateinit var button: Button
@@ -25,6 +32,7 @@ class PostActivity : AppCompatActivity() {
     private lateinit var cancelButton: Button
     private lateinit var postButton: Button
     private lateinit var auth:FirebaseAuth
+     lateinit var imageUri : Uri
 
     companion object{
         val IMAGE_REQUEST_CODE = 100
@@ -42,6 +50,9 @@ class PostActivity : AppCompatActivity() {
         cancelButton = findViewById(R.id.cancel)
         postButton = findViewById(R.id.post)
         auth = FirebaseAuth.getInstance()
+
+        val storageRef = FirebaseStorage.getInstance().reference.child("Images")
+
 
         // This button will just send the user back to the previous activity
         cancelButton.setOnClickListener{
@@ -88,14 +99,8 @@ class PostActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+            uploadImage()
             postContent(locationText.text.toString(), editText.text.toString())
-            /*
-            else -> {
-            val location: String = locationText.text.toString().trim { it <= ' '}
-        }
-             */
-            // Creating variables for values in location texts.
-            val location = locationText.text.toString()
         }
         cancelButton.setOnClickListener { cancel() }
         // I want to have an <hr> tag below the location and description.
@@ -111,48 +116,86 @@ class PostActivity : AppCompatActivity() {
         textView.text = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY, null, tagHandler)
          */
     }
+    /* For the user to be logged in
+    private fun logon() {
+        var providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build()
+        )
+        startActivityForResult(
+            AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(providers).build(), AUTH_REQUIRED
+        )
+    }
+    */
     private fun pickImageGallery()
     {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
-    private fun postContent(location: String, description: String) {
-        // Access a Cloud Firestore instance from your Activity
-        val db = Firebase.firestore
-        val post = hashMapOf(
-       //    "uid" to auth.currentUser!!.uid,
-            "titleLocation" to location,
-            "Description" to description
-        )
-        // Set the database document to be the location of the post.
-        db.collection("Add Post").document(location).set(post)
-        Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, InspectPostActivity::class.java))
-        finish()
-        /* The code above is much shorter.
-        // Add a new document with a generated ID
-        db.collection("Add Post")
-            .add(post)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, InspectPostActivity::class.java))
-                finish()
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-         */
-    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
-            imageView.setImageURI(data?.data)
+           // imageView.setImageURI(data?.data)
+            imageUri = data?.data!!
+            imageView.setImageURI(imageUri)
             button.setY(225F) // This will move the button down below the image so it is not overlapping it.
         }
+        /* This is when I work on the users
+        else if (requestCode == AUTH_REQUEST_CODE) {
+            user = FirebaseAuth.getInstance().currentUser
+        }
+         */
+    }
+    private fun uploadImage() {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Uploading")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+        val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
+        val now = Date()
+        val fileName = formatter.format(now)
+        val storageReference = FirebaseStorage.getInstance().getReference("Images/$fileName")
+
+        storageReference.putFile(imageUri).
+                addOnSuccessListener {
+                    imageView.setImageURI(null)
+                    Toast.makeText(this, "Successfully Uploaded", Toast.LENGTH_SHORT).show()
+                    if(progressDialog.isShowing) progressDialog.dismiss()
+                }
+            .addOnFailureListener{
+                if(progressDialog.isShowing) progressDialog.dismiss()
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+    private fun postContent(location: String, description: String) {
+        // If we don't have a populated user
+        /*
+        if(user == null) {
+            logon()
+        }
+        user ?: return
+         */
+        // Access a Cloud Firestore instance from your Activity
+        val db = Firebase.firestore
+
+        val post = hashMapOf(
+            //    "uid" to auth.currentUser!!.uid,
+            "timestamp" to Timestamp(Date()),
+            "titleLocation" to location,
+            "Description" to description
+        )
+        db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
+        // Set the database document to be the location of the post.
+       db.collection("Add Post").document(location).set(post)
+        Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, InspectPostActivity::class.java))
+        finish()
     }
     private fun cancel(){
         finish()
     }
+
 }
