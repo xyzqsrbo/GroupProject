@@ -19,18 +19,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupProject">
         <activity
-            android:name=".InspectPostActivity"
-            android:exported="true" />
+        android:name=".InspectPostActivity"
+        android:exported="true" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true"
+            android:parentActivityName=".MapsActivity"/>
         <activity
             android:name=".profile_page.PostActivity"
             android:exported="true" />
         <activity android:name=".profile_page.ProfileActivity"
-            android:exported="true">
+            android:exported="true"/>
+        <activity
+            android:name=".LogInActivity"
+            android:exported="true"
+            android:parentActivityName=".MapsActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -47,7 +57,6 @@
             android:name=".MapsActivity"
             android:exported="true"
             android:label="@string/title_activity_maps">
-
         </activity>
     </application>
 
