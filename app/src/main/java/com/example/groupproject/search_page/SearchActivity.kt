@@ -11,24 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groupproject.R
 import com.example.groupproject.profile_page.Post
 import com.example.groupproject.profile_page.User
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.profile_page.*
 import java.util.ArrayList
 
 class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
 
-    var userList = arrayOf(
-        User("FirstLast", "First", "Last", "Just your Average Joe",
-            listOf(Post(R.drawable.ic_upvote, "FirstLast", "FirstLast0"),
-                Post(R.drawable.ic_user_picture, "FirstLast", "FirstLast1")
-            )),
-        User("TheChosenOne", "Anikan", "Skywalker", "", listOf()),
-        User("BenKenobi", "Obiwan", "Kenobi", "", listOf()),
-        User("TheSenate", "Sheev", "Palpatine", "", listOf()),
-        User("TheNewHope", "Luke", "Skywalker", "", listOf()),
-        User("ThePrincess", "Leah", "Organa", "", listOf()),
-        User("TheTraitor", "Count", "Dooku", "", listOf()),
-        User("TheBountyHunter", "Boba", "Fett", "", listOf())
-    )
+    val db = Firebase.firestore
 
     var userArrayList = ArrayList<User>()
     var userAdapter: SearchAdapter? = null
@@ -37,9 +27,30 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_activity)
 
-        for(user in userList){
-            userArrayList.add(user)
-        }
+        var user = User("", "", "", "", listOf())
+
+        db.collection("Account")
+            .get()
+            .addOnSuccessListener { result ->
+                for(document in result){
+                    user.fName = document.getString("first")!!.toString()
+                    user.lName = document.getString("last")!!.toString()
+                    user.username = document.getString("username")!!.toString()
+                    user.bio = document.getString("description")!!.toString()
+                    //insert post here
+                    user.posts = listOf()
+                    userArrayList.add(user)
+                    Log.e("TAG", "====>" + user.username)
+                }
+
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to load in users", Toast.LENGTH_LONG).show()
+            }
+
+        val actionBar = supportActionBar
+        actionBar!!.title = "Search Users"
+        actionBar.setDisplayHomeAsUpEnabled(true)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)

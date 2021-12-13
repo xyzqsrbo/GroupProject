@@ -8,7 +8,7 @@ data class User(
     var fName: String = "",
     var lName: String = "",
     var bio: String = "",
-    var posts: List<Post>
+    var posts: List<Post> = listOf()
 ) : Serializable
 
 object UserSupplier {
