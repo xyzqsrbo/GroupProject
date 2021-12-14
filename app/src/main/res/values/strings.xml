@@ -8,4 +8,20 @@
     <string name="settings_button">Setttings Button</string>
     <string name="username">Username</string>
     <string name="search_button">search button</string>
+    <string name="map_fragment">String</string>
+    <string name="add_post">String</string>
+    <string name="profile_fragment">Profile Fragment</string>
+    <string name="cancel">cancel</string>
+    <string name="describe_the_picture">Describe the Picture</string>
+    <string name="draft">draft</string>
+    <string name="location_of_the_image">location of the image</string>
+    <string name="post">post</string>
+    <string name="description">description</string>
+    <string name="location">location</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="Dislike">Dislike</string>
+    <string name="Like">Like</string>
+    <string name="Comments">Comments</string>
+    <string name="comment_section">Comment Section</string>
+    <string name="Description">Description</string>
 </resources>
