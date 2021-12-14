@@ -53,7 +53,6 @@ class PostActivity : AppCompatActivity() {
 
         val storageRef = FirebaseStorage.getInstance().reference.child("Images")
 
-
         // This button will just send the user back to the previous activity
         cancelButton.setOnClickListener{
             finish()
@@ -180,7 +179,6 @@ class PostActivity : AppCompatActivity() {
          */
         // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore
-
         val post = hashMapOf(
             //    "uid" to auth.currentUser!!.uid,
             "timestamp" to Timestamp(Date()),
@@ -197,5 +195,4 @@ class PostActivity : AppCompatActivity() {
     private fun cancel(){
         finish()
     }
-
 }
