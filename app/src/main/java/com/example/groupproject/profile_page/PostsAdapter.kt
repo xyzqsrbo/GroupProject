@@ -19,7 +19,7 @@ import com.example.groupproject.R
  * @param context: context of the page
  * @param posts: the list of posts being set to the page
  */
-class PostsAdapter(val context: Context, private val posts: List<Post>) :
+class PostsAdapter(val context: Context, private val posts: ArrayList<Post>) :
     RecyclerView.Adapter<PostsAdapter.MyViewHolder>() {
     companion object {
         val TAG: String = PostsAdapter::class.java.simpleName

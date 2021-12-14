@@ -11,7 +11,7 @@ import com.example.groupproject.showToast
 import kotlinx.android.synthetic.main.profile_page.*
 
 /**
- * This is teh activity for posts
+ * This is the activity for posts
  * Don't think this is in use anymore need to look into it
  */
 class PostsActivity : AppCompatActivity() {
@@ -36,6 +36,7 @@ class PostsActivity : AppCompatActivity() {
     /**
      * This function sets up the recycler view to load into the page
      */
+    /*
     private fun setupRecyclerView(){
         //set the layout of the recycler view
         val layoutManager = LinearLayoutManager(this)
@@ -46,4 +47,6 @@ class PostsActivity : AppCompatActivity() {
         val adapter = PostsAdapter(this, UserSupplier.user.posts)
         recyclerView.adapter = adapter
     }
+
+     */
 }

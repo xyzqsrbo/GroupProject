@@ -9,11 +9,16 @@ import android.os.Bundle
 import android.content.Intent
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groupproject.R
 import com.example.groupproject.search_page.SearchActivity
 import com.example.groupproject.showToast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.profile_page.*
 
 /**
@@ -21,6 +26,7 @@ import kotlinx.android.synthetic.main.profile_page.*
  */
 class ProfileActivity : AppCompatActivity() {
     var user: User? = null
+    private lateinit var auth: FirebaseAuth
 
     companion object{
         val TAG: String = ProfileActivity::class.java.simpleName
@@ -40,6 +46,15 @@ class ProfileActivity : AppCompatActivity() {
 
         //Set the user to the logged in user
         user = UserSupplier.user
+        //This is eventually going in
+        //auth = Firebase.auth
+        //val currentUser = auth.currentUser
+        //user.username = currentUser
+
+
+        //Change the action bar on top to username
+        val actionBar = supportActionBar
+        actionBar!!.title = user!!.username
 
         //Set all appropriate data to on the page
         profilePicture.setImageResource(R.drawable.ic_user_picture)
@@ -55,20 +70,45 @@ class ProfileActivity : AppCompatActivity() {
             showToast("Settings button was clicked!")
         }
 
-        //setup the recycler view to the logged in users posts
-        setupRecyclerView()
+        val db = Firebase.firestore
+        var username: String
+        var posts = ArrayList<Post>()
+        var post: Post
+        var postId: String
+        var picture: Int
+        //Search database for user's posts
+        db.collection("Post")
+            .get()
+            .addOnSuccessListener { result ->
+                //get the posts that are made by the user
+                for(document in result){
+                    username = document.getString("username")!!.toString()
+                    if(username == user!!.username){
+                        postId = document.getString("Name")!!.toString()
+                        //change this later
+                        picture = R.drawable.ic_user_picture
+                        post = Post(picture, username, postId)
+                        posts.add(post)
+                    }
+                }
+                //setup the recycler view to the logged in users posts
+                setupRecyclerView(posts)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to load in posts", Toast.LENGTH_SHORT).show()
+            }
     }
 
     /**
      * This method sets up the recycler view to the posts for the page
      */
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView(posts: ArrayList<Post>){
         //set the layout to linear and make the posts into a grid
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = GridLayoutManager(this, 3)
 
         //set the adapter to the posts
-        val adapter = PostsAdapter(this, user!!.posts)
+        val adapter = PostsAdapter(this, posts)
         recyclerView.adapter = adapter
     }
 }

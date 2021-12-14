@@ -41,7 +41,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
         var lName: String
         var username: String
         var bio: String
-        var posts: List<Post>
+        var posts: ArrayList<Post>
         var user: User
 
         //Change the action bar on top to show back arrow and change title
@@ -64,10 +64,9 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
                     username = document.getString("username")!!.toString()
                     bio = document.getString("description")!!.toString()
                     //insert post here
-                    posts = listOf()
+                    posts = arrayListOf()
                     user = User(username, fName, lName, bio, posts)
                     userArrayList.add(user)
-                    Log.e("TAG", "====>" + user.username)
                 }
                 //set the adapter to the user list
                 userAdapter = SearchAdapter(this)

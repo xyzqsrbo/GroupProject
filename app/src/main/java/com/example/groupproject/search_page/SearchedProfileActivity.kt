@@ -8,13 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groupproject.R
+import com.example.groupproject.profile_page.Post
 import com.example.groupproject.profile_page.PostsAdapter
 import com.example.groupproject.profile_page.ProfileActivity
 import com.example.groupproject.profile_page.User
 import com.example.groupproject.showToast
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_searched_profile.*
 
 /**
@@ -55,19 +59,46 @@ class SearchedProfileActivity : AppCompatActivity() {
             showToast("add friend button was clicked!")
         }
 
-        //Setup the posts recycler view
-        setupRecyclerView()
+        val db = Firebase.firestore
+        var username: String
+        var posts = ArrayList<Post>()
+        var post: Post
+        var postId: String
+        var picture: Int
+        //Search database for user's posts
+        db.collection("Post")
+            .get()
+            .addOnSuccessListener { result ->
+                //get the posts that are made by the user
+                for(document in result){
+                    username = document.getString("username")!!.toString()
+                    if(username == user!!.username){
+                        postId = document.getString("Name")!!.toString()
+                        //change this later
+                        picture = R.drawable.ic_user_picture
+                        post = Post(picture, username, postId)
+                        posts.add(post)
+                        Log.i("TAG", "====>$postId")
+                    }
+                }
+                //Setup the posts recycler view
+                setupRecyclerView(posts)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to load in posts", Toast.LENGTH_SHORT).show()
+            }
     }
 
     /**
      * This method sets up the recycler view to the posts for the page
      */
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView(posts: ArrayList<Post>){
         //Set the layout of the recycler view
         recyclerViewSearch.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewSearch.layoutManager = GridLayoutManager(this, 3)
+
         //Set the adapter to the recycler view
-        val adapter = PostsAdapter(this, user!!.posts)
+        val adapter = PostsAdapter(this, posts)
         recyclerViewSearch.adapter = adapter
     }
 }

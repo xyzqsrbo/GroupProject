@@ -16,7 +16,7 @@ data class User(
     var fName: String = "",
     var lName: String = "",
     var bio: String = "",
-    var posts: List<Post> = listOf()
+    var posts: ArrayList<Post> = ArrayList<Post>()
 ) : Serializable
 
 /**
@@ -29,7 +29,7 @@ object UserSupplier {
         "Dan",
         "TheMan",
         "This is quite possibly one of the best profiles of all the profiles",
-        listOf(
+        arrayListOf(
             Post(R.drawable.ic_user_picture, "ManTheDan", "MandTheDan0"),
             Post(R.drawable.ic_downvote, "ManTheDan", "ManTheDan1"),
             Post(R.drawable.ic_upvote, "ManTheDan", "ManTheDan2"),
