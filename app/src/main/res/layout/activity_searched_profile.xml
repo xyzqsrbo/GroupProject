@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top"
+    tools:context=".search_page.SearchedProfileActivity">
+
+    <ImageView
+        android:id="@+id/profileSearchPicture"
+        android:layout_width="128dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/user_profile_picture"
+        app:layout_constraintBottom_toTopOf="@+id/textSearchName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_user_picture" />
+
+    <ImageButton
+        android:id="@+id/btnAddFriend"
+        android:layout_width="59dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/settings_button"
+        android:src="@drawable/ic_add_friend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textSearchName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/sample_name"
+        app:layout_constraintBottom_toTopOf="@+id/txtSearchBiography"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileSearchPicture" />
+
+    <TextView
+        android:id="@+id/txtSearchBiography"
+        android:layout_width="388dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="12dp"
+        android:ems="10"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:gravity="start|top"
+        android:hint="@string/no_biography_available"
+        android:lines="4"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSearchName"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="415dp"
+        tools:listitem="@layout/post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSearchBiography" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
