@@ -172,13 +172,13 @@ class PostActivity : AppCompatActivity() {
         val post = hashMapOf(
             //    "uid" to auth.currentUser!!.uid,
             "timestamp" to Timestamp(Date()),
-            "titleLocation" to location,
-            "Description" to description,
+            "Name" to location,
+            "description" to description,
             "likes" to 0,
             "dislikes" to 0,
             "username" to "empty",
             "lat" to 0,
-            "log" to 0
+            "long" to 0
         )
         db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
         // Set the database document to be the location of the post.
