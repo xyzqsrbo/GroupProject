@@ -50,7 +50,7 @@
         android:background="@color/lightGray"
         android:gravity="center"
         android:hint="@string/description"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

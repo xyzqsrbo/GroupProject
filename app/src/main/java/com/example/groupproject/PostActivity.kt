@@ -98,8 +98,8 @@ class PostActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-            uploadImage()
-            postContent(locationText.text.toString(), editText.text.toString())
+            uploadImage(locationText.text.toString(), editText.text.toString())
+          //  postContent(locationText.text.toString(), editText.text.toString())
         }
         cancelButton.setOnClickListener { cancel() }
         // I want to have an <hr> tag below the location and description.
@@ -147,7 +147,7 @@ class PostActivity : AppCompatActivity() {
         }
          */
     }
-    private fun uploadImage() {
+    private fun uploadImage(location: String, description: String) {
         val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Uploading")
         progressDialog.setCancelable(false)
@@ -168,16 +168,6 @@ class PostActivity : AppCompatActivity() {
                 if(progressDialog.isShowing) progressDialog.dismiss()
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
-    }
-    private fun postContent(location: String, description: String) {
-        // If we don't have a populated user
-        /*
-        if(user == null) {
-            logon()
-        }
-        user ?: return
-         */
-        // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore
         val post = hashMapOf(
             //    "uid" to auth.currentUser!!.uid,
@@ -187,7 +177,7 @@ class PostActivity : AppCompatActivity() {
         )
         db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
         // Set the database document to be the location of the post.
-       db.collection("Add Post").document(location).set(post)
+        db.collection("Add Post").document(location).set(post)
         Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, InspectPostActivity::class.java))
         finish()
