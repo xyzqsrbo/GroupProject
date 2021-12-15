@@ -176,7 +176,9 @@ class PostActivity : AppCompatActivity() {
             "Description" to description,
             "likes" to 0,
             "dislikes" to 0,
-            "username" to "empty"
+            "username" to "empty",
+            "lat" to 0,
+            "log" to 0
         )
         db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
         // Set the database document to be the location of the post.
