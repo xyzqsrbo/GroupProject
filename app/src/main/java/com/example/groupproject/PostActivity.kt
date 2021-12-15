@@ -180,7 +180,7 @@ class PostActivity : AppCompatActivity() {
         db.collection("Add Post").document(location).set(post)
         Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, InspectPostActivity::class.java))
-        finish()
+        //finish()
     }
     private fun cancel(){
         finish()
