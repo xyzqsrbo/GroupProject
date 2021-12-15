@@ -6,9 +6,9 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -22,16 +22,41 @@
             android:exported="true"
             android:parentActivityName=".MainPage"/>
         <activity
-            android:name=".LogInActivity"
-            android:exported="true"
-            android:parentActivityName=".MainPage" />
-        <activity
             android:name=".PostActivity"
             android:exported="true" />
         <activity
             android:name=".InspectPostActivity"
             android:exported="true"/>
+        <activity
+            android:name=".profile_page.PostsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".profile_page.ProfileActivity"
+            android:exported="true"/>
+        <activity
 
+          <activity android:name=".PostActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".LogInActivity"
+            android:exported="true"
+            android:parentActivityName=".MapsActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".search_page.SearchActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".search_page.SearchedProfileActivity"
+            android:exported="true"/>
+        -->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -43,21 +68,12 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
         <activity
-            android:name=".MainPage"
+            android:name=".MapsActivity"
             android:exported="true"
             android:label="@string/title_activity_maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

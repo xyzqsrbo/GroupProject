@@ -6,25 +6,69 @@
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/drawable-anydpi/ic_addFriend.xml" value="0.5583333333333333" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5583333333333333" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5583333333333333" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/drawable/ic_profile.xml" value="0.1796875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/drawable/ic_user_picture.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/drawable/textview_border.xml" value="0.5583333333333333" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_inspect_post.xml" value="0.121875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_maps.xml" value="0.5421875" />
-        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/post.xml" value="0.264" />
-        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/profile_page.xml" value="0.5421875" />
-        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/search_page.xml" value="0.5421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_post.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_searched_profile.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.121875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/fragment_add.xml" value="0.121875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/fragment_map.xml" value="0.121875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/fragment_profile.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/post.xml" value="0.23822463768115942" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/profile_page.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/row_item.xml" value="0.1" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/row_items.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/search_activity.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/search_page.xml" value="0.2421875" />
         <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/layout/settings_page.xml" value="0.5421875" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_inspect_post.xml" value="0.33177083333333335" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.3307291666666667" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_add.xml" value="0.3307291666666667" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_blank.xml" value="0.3265625" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_map.xml" value="0.3307291666666667" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_profile.xml" value="0.3307291666666667" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_terms.xml" value="0.3307291666666667" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/post.xml" value="0.3307291666666667" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/settings.xml" value="0.1" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/menu/bottom_menu.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/menu/menu.xml" value="0.2421875" />
+        <entry key="..\:/Users/Cameron/StudioProjects/GroupProject/app/src/main/res/menu/search.xml" value="0.2421875" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/white_border.xml" value="0.3828125" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_log_in.xml" value="0.28306159420289856" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_maps.xml" value="0.28306159420289856" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_add_friend.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_comment.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable-anydpi/inspect.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-anydpi/pictures.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/MyPicture_background.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/drawable/button_transparent.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_add_post.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_chevron_left_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_thumb_up_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_map.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/textview_border.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/layout/activity_inspect_post.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22871376811594202" />
+        <entry key="app/src/main/res/layout/activity_post.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/button_transparent.xml" value="0.23233695652173914" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/fragment_terms.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/post.xml" value="0.18704710144927536" />
+        <entry key="app/src/main/res/layout/profile_page.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/search_page.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/layout/settings.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.2578125" />
+        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/menu/drawer_view.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/menu/menu_example.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/MyPicture.xml" value="0.27395833333333336" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

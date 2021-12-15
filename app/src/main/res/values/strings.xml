@@ -2,6 +2,12 @@
     <string name="app_name">GroupProject</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="sample_name">Sample Name</string>
+    <string name="no_biography_available">No Biography Available</string>
+    <string name="add_friends_button">Add Friends Button</string>
+    <string name="user_profile_picture">User Profile Picture</string>
+    <string name="settings_button">Setttings Button</string>
+    <string name="username">Username</string>
+    <string name="search_button">search button</string>
     <string name="map_fragment">String</string>
     <string name="add_post">String</string>
     <string name="profile_fragment">Profile Fragment</string>
