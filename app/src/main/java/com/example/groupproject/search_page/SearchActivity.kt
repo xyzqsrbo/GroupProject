@@ -41,13 +41,11 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
         var lName: String
         var username: String
         var bio: String
-        var posts: ArrayList<Post>
         var user: User
 
         //Change the action bar on top to show back arrow and change title
         val actionBar = supportActionBar
         actionBar!!.title = "Search Users"
-        actionBar.setDisplayHomeAsUpEnabled(true)
 
         //set user recycler view to linear
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -64,8 +62,7 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
                     username = document.getString("username")!!.toString()
                     bio = document.getString("description")!!.toString()
                     //insert post here
-                    posts = arrayListOf()
-                    user = User(username, fName, lName, bio, posts)
+                    user = User(username, fName, lName, bio)
                     userArrayList.add(user)
                 }
                 //set the adapter to the user list

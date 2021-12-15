@@ -44,22 +44,43 @@ class ProfileActivity : AppCompatActivity() {
         val btnSearchFriend: ImageButton = findViewById(R.id.btnSearchFriend)
         val btnSettings: ImageButton = findViewById(R.id.btnSettings)
 
+        val db = Firebase.firestore
+        //user = UserSupplier.user
+        var fName: String = "first"
+        var lName: String = "last"
+        var username: String = "username"
+        var bio: String = "Failed to load in profile"
+        var user: User
         //Set the user to the logged in user
-        user = UserSupplier.user
-        //This is eventually going in
-        //auth = Firebase.auth
-        //val currentUser = auth.currentUser
-        //user.username = currentUser
+        val currentUser = Firebase.auth.currentUser
+        if(currentUser != null){
+            val uid = currentUser.uid
+            db.collection("Account").get().addOnSuccessListener { result ->
+                for(document in result) {
+                    if (document.getString("uid")!!.toString() == uid) {
+                        fName = document.getString("first")!!.toString()
+                        lName = document.getString("last")!!.toString()
+                        username = document.getString("username")!!.toString()
+                        bio = document.getString("description")!!.toString()
+                        //user = User(username, fName, lName, bio)
+                        break
+                    }
+                }
+                //Change the action bar on top to username
+                val actionBar = supportActionBar
+                actionBar!!.title = username
 
+                //Set all appropriate data to on the page
+                profilePicture.setImageResource(R.drawable.ic_user_picture)
+                textName.text = ("$fName $lName")
+                txtBiography.text = bio
+            }.addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to find a profile", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            Toast.makeText(this, "Failed to load in profile", Toast.LENGTH_SHORT).show()
+        }
 
-        //Change the action bar on top to username
-        val actionBar = supportActionBar
-        actionBar!!.title = user!!.username
-
-        //Set all appropriate data to on the page
-        profilePicture.setImageResource(R.drawable.ic_user_picture)
-        textName.text = (user!!.fName + " " + user!!.lName)
-        txtBiography.text = user!!.bio
 
         //Set on click listeners the search friend button and settings button
         btnSearchFriend.setOnClickListener{
@@ -70,20 +91,22 @@ class ProfileActivity : AppCompatActivity() {
             showToast("Settings button was clicked!")
         }
 
-        val db = Firebase.firestore
-        var username: String
-        var posts = ArrayList<Post>()
+
+
+
         var post: Post
         var postId: String
         var picture: Int
+        var postUsername: String
+        var posts: ArrayList<Post> = arrayListOf()
         //Search database for user's posts
         db.collection("Post")
             .get()
             .addOnSuccessListener { result ->
                 //get the posts that are made by the user
                 for(document in result){
-                    username = document.getString("username")!!.toString()
-                    if(username == user!!.username){
+                    postUsername = document.getString("username")!!.toString()
+                    if(postUsername == username){
                         postId = document.getString("Name")!!.toString()
                         //change this later
                         picture = R.drawable.ic_user_picture
@@ -96,6 +119,7 @@ class ProfileActivity : AppCompatActivity() {
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to load in posts", Toast.LENGTH_SHORT).show()
+                Log.e("TAG", "Failed to load in posts")
             }
     }
 
