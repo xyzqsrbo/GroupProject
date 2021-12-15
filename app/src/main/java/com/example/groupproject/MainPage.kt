@@ -29,7 +29,7 @@ import com.google.android.material.navigation.NavigationView
 import java.lang.Exception
 
 
-class MapsActivity : AppCompatActivity() {
+class MainPage : AppCompatActivity() {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding

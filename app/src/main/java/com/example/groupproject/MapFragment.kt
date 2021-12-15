@@ -33,7 +33,7 @@ class MapFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activity?.let{
-            val intent = Intent (it, MapsActivity::class.java)
+            val intent = Intent (it, MainPage::class.java)
             it.startActivity(intent)
         }
     }

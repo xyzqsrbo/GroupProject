@@ -16,7 +16,7 @@ class LogInActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         findViewById<Button>(R.id.button).setOnClickListener {
-            startActivity(Intent(this, MapsActivity::class.java))
+            startActivity(Intent(this, MainPage::class.java))
         }
     }
 }
