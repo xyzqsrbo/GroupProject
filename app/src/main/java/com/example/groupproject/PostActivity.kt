@@ -173,11 +173,14 @@ class PostActivity : AppCompatActivity() {
             //    "uid" to auth.currentUser!!.uid,
             "timestamp" to Timestamp(Date()),
             "titleLocation" to location,
-            "Description" to description
+            "Description" to description,
+            "likes" to 0,
+            "dislikes" to 0,
+            "username" to "empty"
         )
         db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
         // Set the database document to be the location of the post.
-        db.collection("Add Post").document(location).set(post)
+        db.collection("Post").document(location).set(post)
         Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, InspectPostActivity::class.java))
         //finish()
