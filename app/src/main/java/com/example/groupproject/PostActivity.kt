@@ -156,7 +156,7 @@ class PostActivity : AppCompatActivity() {
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
         val now = Date()
         val fileName = formatter.format(now)
-        val storageReference = FirebaseStorage.getInstance().getReference("Images/$fileName")
+        val storageReference = FirebaseStorage.getInstance().getReference("Images/$location")
 
         storageReference.putFile(imageUri).
                 addOnSuccessListener {
@@ -178,7 +178,8 @@ class PostActivity : AppCompatActivity() {
             "dislikes" to 0,
             "username" to "empty",
             "lat" to 0,
-            "long" to 0
+            "long" to 0,
+            "imageName" to "$location image"
         )
         db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
         // Set the database document to be the location of the post.
