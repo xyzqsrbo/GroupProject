@@ -27,7 +27,6 @@ class LogInActivity : AppCompatActivity() {
         //set the top bar to say sign in
         val actionBar = supportActionBar
         actionBar!!.title = "Sign In"
-        actionBar.setDisplayHomeAsUpEnabled(true)
 
         //assign every element to a global variable
         email = findViewById(R.id.editTextTextPersonName)

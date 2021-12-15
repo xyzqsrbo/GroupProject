@@ -44,6 +44,10 @@ class InspectPostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inspect_post)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = "Post"
+        actionBar.setDisplayHomeAsUpEnabled(true)
+
         // Linking all of the elements to their views
         likeButton = findViewById(R.id.likeButton)
         likeIncrementer = findViewById(R.id.likeIncrementer)
@@ -54,7 +58,7 @@ class InspectPostActivity : AppCompatActivity() {
         previousArrow = findViewById(R.id.backArrow)
         nextArrow = findViewById(R.id.forwardArrow)
 
-        val db = FirebaseFirestore.getInstance()
+        val db = Firebase.firestore
 
         reference = FirebaseDatabase.getInstance().reference.child("Chicago, Illinois").child("locationTitle")
 
@@ -71,18 +75,13 @@ class InspectPostActivity : AppCompatActivity() {
         }
         // Sets the text to the database location
 
-        val docRef = db.collection("Add Post").document("Eau Claire, Wisconsin")
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d("Exists", "DocumentSnapshot data: ${document.data}")
+        db.collection("Post").whereEqualTo("Name", intent.getStringExtra("Title")).get()
+            .addOnSuccessListener { result ->
 
-                   // locationTextView.text = document.getString("locationTitle")
-                    locationTextView.setText(document.getString("titleLocation"))
-                    descriptionTextView.setText(document.getString("Description"))
-                }
-                else {
-                    Log.d("noExist", "No Such Document")
+
+                for (document in result) {
+                    locationTextView.setText(document.getString("Name").toString())
+                    descriptionTextView.setText(document.getString("description").toString())
                 }
             }
 

@@ -61,6 +61,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        //inspect post when a user selects it
+        mMap.setOnMarkerClickListener { marker ->
+            val intent = Intent(this, InspectPostActivity::class.java)
+            intent.putExtra("Title", marker.title)
+            startActivity(intent)
+            true
+        }
+
         var location:LatLng
         var marker:Marker
         var markers:ArrayList<Marker> = ArrayList()

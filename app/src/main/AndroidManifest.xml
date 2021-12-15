@@ -20,7 +20,9 @@
         android:theme="@style/Theme.GroupProject">
         <activity
         android:name=".InspectPostActivity"
-        android:exported="true" />
+        android:exported="true"
+        android:parentActivityName=".MapsActivity"/>
+
         <activity
             android:name=".SignUpActivity"
             android:exported="true"
