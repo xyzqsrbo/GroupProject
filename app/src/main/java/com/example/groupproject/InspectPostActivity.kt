@@ -27,7 +27,9 @@ import java.sql.Timestamp
 import java.util.Date
 
 class InspectPostActivity : AppCompatActivity() {
+    var liked = false
     var likeCounter = 0
+    var disliked = false
     var dislikeCounter = 0
     private lateinit var likeButton: Button
     private lateinit var dislikeButton: Button
@@ -61,13 +63,29 @@ class InspectPostActivity : AppCompatActivity() {
 
         // When clicked, it increments the like count
         likeButton.setOnClickListener {
-            likeCounter++
-            likeIncrementer.setText("$likeCounter")
+            if(!liked) {
+                liked = true
+                if (disliked) {
+                    disliked = false
+                    dislikeCounter--
+                    dislikeIncrementer.setText("$dislikeCounter")
+                }
+                likeCounter++
+                likeIncrementer.setText("$likeCounter")
+            }
         }
         // When clicked, it decrements the dislike counts
         dislikeButton.setOnClickListener {
-            dislikeCounter++
-            dislikeIncrementer.setText("$dislikeCounter")
+            if(!disliked) {
+                disliked = true
+                if(liked){
+                    liked = false
+                    likeCounter--
+                    likeIncrementer.setText("$likeCounter")
+                }
+                dislikeCounter++
+                dislikeIncrementer.setText("$dislikeCounter")
+            }
         }
         // Sets the text to the database location
 
