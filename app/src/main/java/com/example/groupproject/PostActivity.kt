@@ -187,6 +187,7 @@ class PostActivity : AppCompatActivity() {
         Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, InspectPostActivity::class.java))
         //finish()
+
     }
     private fun cancel(){
         finish()
