@@ -68,7 +68,7 @@ class LogInActivity : AppCompatActivity() {
         //login the user
         auth.signInWithEmailAndPassword(txtEmail, txtPassword).addOnSuccessListener { result ->
             Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, MapsActivity::class.java))
+            startActivity(Intent(this, MainPage::class.java))
             finish()
         }.addOnFailureListener {
             Toast.makeText(this, "Failed to login!", Toast.LENGTH_SHORT).show()

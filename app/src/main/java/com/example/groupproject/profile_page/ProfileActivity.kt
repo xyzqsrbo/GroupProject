@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groupproject.R
@@ -24,8 +28,9 @@ import kotlinx.android.synthetic.main.profile_page.*
 /**
  * This class is the activity page for the logged in user profile
  */
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : Fragment() {
     var user: User? = null
+    private lateinit var main:View
     private lateinit var auth: FirebaseAuth
 
     companion object{
@@ -36,13 +41,16 @@ class ProfileActivity : AppCompatActivity() {
      * This method sets the view to the profile_page
      * @param savedInstanceState: the saved state of the page
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?
+    ): View {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.profile_page)
+        main =  inflater.inflate(R.layout.profile_page, container, false)
+
 
         //Get all views in the page
-        val btnSearchFriend: ImageButton = findViewById(R.id.btnSearchFriend)
-        val btnSettings: ImageButton = findViewById(R.id.btnSettings)
+        val btnSearchFriend: ImageButton = main.findViewById(R.id.btnSearchFriend)
+        val btnSettings: ImageButton = main.findViewById(R.id.btnSettings)
 
         //Set the user to the logged in user
         user = UserSupplier.user
@@ -53,7 +61,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
         //Change the action bar on top to username
-        val actionBar = supportActionBar
+        val actionBar = activity?.actionBar
         actionBar!!.title = user!!.username
 
         //Set all appropriate data to on the page
@@ -63,11 +71,11 @@ class ProfileActivity : AppCompatActivity() {
 
         //Set on click listeners the search friend button and settings button
         btnSearchFriend.setOnClickListener{
-            startActivity(Intent(this@ProfileActivity, SearchActivity::class.java))
+            startActivity(Intent(activity, SearchActivity::class.java))
         }
         btnSettings.setOnClickListener{
             Log.i(TAG, "setting button was clicked!")
-            showToast("Settings button was clicked!")
+            activity?.showToast("Settings button was clicked!")
         }
 
         val db = Firebase.firestore
@@ -95,8 +103,9 @@ class ProfileActivity : AppCompatActivity() {
                 setupRecyclerView(posts)
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(this, "Failed to load in posts", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Failed to load in posts", Toast.LENGTH_SHORT).show()
             }
+        return main
     }
 
     /**
@@ -104,11 +113,11 @@ class ProfileActivity : AppCompatActivity() {
      */
     private fun setupRecyclerView(posts: ArrayList<Post>){
         //set the layout to linear and make the posts into a grid
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = GridLayoutManager(this, 3)
+        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = GridLayoutManager(activity, 3)
 
         //set the adapter to the posts
-        val adapter = PostsAdapter(this, posts)
+        val adapter = activity?.let { PostsAdapter(it, posts) }
         recyclerView.adapter = adapter
     }
 }

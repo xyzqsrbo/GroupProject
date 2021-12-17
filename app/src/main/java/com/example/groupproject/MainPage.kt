@@ -24,6 +24,7 @@ import androidx.core.view.iterator
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.groupproject.profile_page.ProfileActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import java.lang.Exception
@@ -42,7 +43,7 @@ class MainPage : AppCompatActivity() {
 
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.main_page)
         var navView : BottomNavigationView = findViewById(R.id.nvView)
         setupDrawerContent(navView)
 
@@ -62,8 +63,9 @@ class MainPage : AppCompatActivity() {
         navigationView.setOnItemSelectedListener {
 
             when(it.itemId){
-                R.id.DorasMap -> selectDrawerItem(BlankFragment(), "fuck you" )
-                R.id.cheapSkate -> selectDrawerItem(Terms(), "Also fuck you" )
+                R.id.DorasMap -> selectDrawerItem(BlankFragment(), "World" )
+                R.id.cheapSkate -> selectDrawerItem(PostActivity(), "Post" )
+                R.id.personal -> selectDrawerItem(ProfileActivity(), "Profile")
             }
             true
         }

@@ -71,12 +71,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     location = LatLng(document.getDouble("lat")!!.toDouble(), document.getDouble("long")!!.toDouble())
-                    marker = mMap.addMarker(MarkerOptions().position(location).title(document.getString("Name")))
+                    marker = mMap.addMarker(MarkerOptions().position(location).title(document.getString("Name")))!!
                     markers.add(marker)
                 }
                 mSearchText.doAfterTextChanged {
                     for (post in markers) {
-                        if (!post.title.contains(mSearchText.text.toString(), ignoreCase = true)) {
+                        if (!post.title?.contains(mSearchText.text.toString(), ignoreCase = true)!!) {
                             post.setVisible(false)
                         } else {
                             post.setVisible(true)
