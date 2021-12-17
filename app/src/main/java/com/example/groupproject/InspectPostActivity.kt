@@ -116,8 +116,6 @@ class InspectPostActivity : AppCompatActivity() {
             val db = FirebaseFirestore.getInstance()
             var first = db.collection("Post").orderBy("timestamp")
             getNext(first, db, nextClicker)
-
-
         }
         previousArrow.setOnClickListener {
             nextClicker--
