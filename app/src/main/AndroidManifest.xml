@@ -47,10 +47,12 @@
 
         <activity
             android:name=".search_page.SearchActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:parentActivityName=".profile_page.ProfileActivity"/>
         <activity
             android:name=".search_page.SearchedProfileActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:parentActivityName=".search_page.SearchActivity"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -46,10 +46,10 @@ class ProfileActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
         //user = UserSupplier.user
-        var fName: String = "first"
-        var lName: String = "last"
-        var username: String = "username"
-        var bio: String = "Failed to load in profile"
+        var fName: String = "Loading"
+        var lName: String = "..."
+        var username: String = "Loading..."
+        var bio: String = "Loading..."
         var user: User
         //Set the user to the logged in user
         val currentUser = Firebase.auth.currentUser
@@ -76,9 +76,13 @@ class ProfileActivity : AppCompatActivity() {
                 txtBiography.text = bio
             }.addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to find a profile", Toast.LENGTH_SHORT).show()
+                textName.text = ("Failed to Load in")
+                txtBiography.text = ("Failed to load in the user profile")
             }
         }else{
             Toast.makeText(this, "Failed to load in profile", Toast.LENGTH_SHORT).show()
+            textName.text = ("Failed to Load in")
+            txtBiography.text = ("Failed to load in the user profile")
         }
 
 

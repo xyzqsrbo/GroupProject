@@ -113,7 +113,8 @@ class SearchAdapter(var clickedItem: ClickedItem) : RecyclerView.Adapter<SearchA
                     var searchChr: String = charSequence.toString().toLowerCase()
                     user.clear()
                     for(users in userListFilter){
-                        if(users.username.toLowerCase().contains(searchChr) || users.fName.toLowerCase().contains(searchChr) || users.lName.toLowerCase().contains(searchChr)){
+                        var search: String = (users.username + users.fName + users.lName)
+                        if(search.toLowerCase().contains(searchChr)){
                             user.add(users)
                         }
                     }

@@ -46,6 +46,7 @@ class SearchedProfileActivity : AppCompatActivity() {
         //Set the action bar to the correct title and put up a return arrow
         val actionBar = supportActionBar
         actionBar!!.title = user!!.username
+        actionBar.setDisplayHomeAsUpEnabled(true)
 
         //Set page data
         profileSearchPicture.setImageResource(R.drawable.ic_user_picture)
