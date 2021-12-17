@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groupproject.R
 import com.example.groupproject.profile_page.Post
 import com.example.groupproject.profile_page.User
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.profile_page.*
@@ -41,7 +42,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
         var lName: String
         var username: String
         var bio: String
-        var posts: ArrayList<Post>
         var user: User
 
         //Change the action bar on top to show back arrow and change title
@@ -53,30 +53,49 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        //Search database for all users
-        db.collection("Account")
-            .get()
-            .addOnSuccessListener { result ->
-                //put users into an arraylist to search through later
+        //Get the current user for removal from search list
+        val currentUser = Firebase.auth.currentUser
+        var tempUsername: String = ""
+        if(currentUser != null){
+            val uid = currentUser.uid
+            db.collection("Account").get().addOnSuccessListener { result ->
                 for(document in result){
-                    fName = document.getString("first")!!.toString()
-                    lName = document.getString("last")!!.toString()
-                    username = document.getString("username")!!.toString()
-                    bio = document.getString("description")!!.toString()
-                    //insert post here
-                    posts = arrayListOf()
-                    user = User(username, fName, lName, bio, posts)
-                    userArrayList.add(user)
+                    if(document.getString("uid")!!.toString() == uid) {
+                        tempUsername = document.getString("username")!!.toString()
+                    }
                 }
-                //set the adapter to the user list
-                userAdapter = SearchAdapter(this)
-                userAdapter!!.setData(userArrayList)
-                recyclerView.adapter = userAdapter
+                //Search database for all users
+                db.collection("Account")
+                    .get()
+                    .addOnSuccessListener { result1 ->
+                        //put users into an arraylist to search through later
+                        for(document in result1){
+                            fName = document.getString("first")!!.toString()
+                            lName = document.getString("last")!!.toString()
+                            username = document.getString("username")!!.toString()
+                            bio = document.getString("description")!!.toString()
+                            //insert post here
+                            user = User(username, fName, lName, bio)
+                            if(username != tempUsername) {
+                                userArrayList.add(user)
+                            }
+                        }
+
+                        //set the adapter to the user list
+                        userAdapter = SearchAdapter(this)
+                        userAdapter!!.setData(userArrayList)
+                        recyclerView.adapter = userAdapter
+                    }
+                    .addOnFailureListener { exception ->
+                        //Send out a toast upon failure of a failure to load in profiles
+                        Toast.makeText(this, "Failed to load in users", Toast.LENGTH_LONG).show()
+                    }
+            }.addOnFailureListener { exception ->
+                Log.e("TAG", "Could not load in user array correctly")
             }
-            .addOnFailureListener { exception ->
-                //Send out a toast upon failure of a failure to load in profiles
-                Toast.makeText(this, "Failed to load in users", Toast.LENGTH_LONG).show()
-            }
+        }
+
+
 
 
 

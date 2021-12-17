@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -21,11 +22,6 @@
             android:name=".update"
             android:exported="true"
             android:label="@string/title_activity_update"
-            android:theme="@style/Theme.GroupProject.NoActionBar" />
-        <activity
-            android:name=".settings"
-            android:exported="true"
-            android:label="@string/title_activity_settings"
             android:theme="@style/Theme.GroupProject.NoActionBar" />
         <activity
             android:name=".SignUpActivity"
@@ -53,12 +49,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".search_page.SearchActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".profile_page.ProfileActivity"/>
         <activity
             android:name=".search_page.SearchedProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".search_page.SearchActivity"/>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -70,11 +70,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <activity
             android:name=".MapsActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps">
+
+        </activity>
+
     </application>
 
 </manifest>
