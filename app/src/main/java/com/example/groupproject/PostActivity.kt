@@ -1,6 +1,5 @@
 package com.example.groupproject
 
-import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Color
@@ -62,11 +61,6 @@ class PostActivity : Fragment() {
         button.setOnClickListener{
             pickImageGallery()
         }
-        val storageRef = FirebaseStorage.getInstance().reference.child("Images")
-
-        // This button will just send the user back to the previous activity
-
-
         // This is to change the background color once the user types something in to be transparent.
         val originalColor = (editText.background as ColorDrawable).color
         val haveTextColor = Color.TRANSPARENT
@@ -105,8 +99,8 @@ class PostActivity : Fragment() {
                     ).show()
                 }
             }
-            uploadImage()
-            postContent(locationText.text.toString(), editText.text.toString())
+            uploadImage(locationText.text.toString(), editText.text.toString())
+          //  postContent(locationText.text.toString(), editText.text.toString())
         }
         cancelButton.setOnClickListener { cancel() }
         // I want to have an <hr> tag below the location and description.
@@ -114,13 +108,15 @@ class PostActivity : Fragment() {
         val locationTextImage = getString(R.string.location_of_the_image)
         val tagHandler = HtmlTagHandler()
         locationTextView.text = HtmlCompat.fromHtml(locationTextImage, HtmlCompat.FROM_HTML_MODE_LEGACY, null, tagHandler)
+
+        /*
+        val html = "Hello <br> hai<br> I am fine <hr> Another line here <hr><hr>"
+        val tagHandler = HtmlTagHandler()
+
+        textView.text = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY, null, tagHandler)
+         */
         return main
     }
-
-
-
-
-
     /* For the user to be logged in
     private fun logon() {
         var providers = arrayListOf(
@@ -153,7 +149,7 @@ class PostActivity : Fragment() {
         }
          */
     }
-    private fun uploadImage() {
+    private fun uploadImage(location: String, description: String) {
         val progressDialog = ProgressDialog(activity)
         progressDialog.setMessage("Uploading")
         progressDialog.setCancelable(false)
@@ -162,7 +158,7 @@ class PostActivity : Fragment() {
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
         val now = Date()
         val fileName = formatter.format(now)
-        val storageReference = FirebaseStorage.getInstance().getReference("Images/$fileName")
+        val storageReference = FirebaseStorage.getInstance().getReference("Images/$location")
 
         storageReference.putFile(imageUri).
                 addOnSuccessListener {
@@ -174,22 +170,18 @@ class PostActivity : Fragment() {
                 if(progressDialog.isShowing) progressDialog.dismiss()
                 Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
             }
-    }
-    private fun postContent(location: String, description: String) {
-        // If we don't have a populated user
-        /*
-        if(user == null) {
-            logon()
-        }
-        user ?: return
-         */
-        // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore
         val post = hashMapOf(
             //    "uid" to auth.currentUser!!.uid,
             "timestamp" to Timestamp(Date()),
-            "titleLocation" to location,
-            "Description" to description
+            "Name" to location,
+            "description" to description,
+            "likes" to 0,
+            "dislikes" to 0,
+            "username" to "empty",
+            "lat" to 0,
+            "long" to 0,
+            "imageName" to "$location image"
         )
         db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
         // Set the database document to be the location of the post.
