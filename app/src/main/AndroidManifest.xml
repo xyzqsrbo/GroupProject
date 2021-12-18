@@ -37,9 +37,6 @@
             android:name=".profile_page.PostsActivity"
             android:exported="true" />
         <activity
-            android:name=".profile_page.ProfileActivity"
-            android:exported="true" />
-        <activity
             android:name=".LogInActivity"
             android:exported="true"
             android:parentActivityName=".MapsActivity">
