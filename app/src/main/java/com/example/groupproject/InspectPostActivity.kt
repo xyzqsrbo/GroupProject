@@ -17,10 +17,13 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.*
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.sql.Timestamp
@@ -31,6 +34,8 @@ class InspectPostActivity : AppCompatActivity() {
     var likeCounter = 0
     var disliked = false
     var dislikeCounter = 0
+    var nextClicker = 2 // Since the original page pop up will be 1, this will be the one after it
+    var postSize = 0
     private lateinit var likeButton: Button
     private lateinit var dislikeButton: Button
     private lateinit var likeIncrementer: TextView
@@ -39,8 +44,8 @@ class InspectPostActivity : AppCompatActivity() {
     private lateinit var descriptionTextView: TextView
     private lateinit var previousArrow: Button
     private lateinit var nextArrow: Button
-    private lateinit var reference: DatabaseReference
     private lateinit var usersImage: ImageView
+    private lateinit var commentSection: TextView
     private lateinit var date: Timestamp
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,17 +62,17 @@ class InspectPostActivity : AppCompatActivity() {
         previousArrow = findViewById(R.id.backArrow)
         nextArrow = findViewById(R.id.forwardArrow)
         usersImage = findViewById(R.id.usersImage)
+        commentSection = findViewById(R.id.commentSection)
 
         val db = FirebaseFirestore.getInstance()
+        val first = db.collection("Post").orderBy("timestamp")
+        getNext(first, db, 2) // This is the original pop up
+        postSize = getPostSize(first)
+        commentSection.setText(postSize.toString()) // I was trying to display the number in the comment to see if it is actually returning the size
 
-        reference = FirebaseDatabase.getInstance().reference.child("Chicago, Illinois").child("locationTitle")
-
-        likeIncrementer.setText("$likeCounter")
-        dislikeIncrementer.setText("$dislikeCounter")
-        //val likeRef = db.collection("Post").document()
         // When clicked, it increments the like count
         likeButton.setOnClickListener {
-            if(!liked) {
+            if (!liked) {
                 liked = true
                 if (disliked) {
                     disliked = false
@@ -80,9 +85,9 @@ class InspectPostActivity : AppCompatActivity() {
         }
         // When clicked, it decrements the dislike counts
         dislikeButton.setOnClickListener {
-            if(!disliked) {
+            if (!disliked) {
                 disliked = true
-                if(liked){
+                if (liked) {
                     liked = false
                     likeCounter--
                     likeIncrementer.setText("$likeCounter")
@@ -93,32 +98,48 @@ class InspectPostActivity : AppCompatActivity() {
         }
         // Sets the text to the database location
 
-        val docRef = db.collection("Post").document("Puppy")
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d("Exists", "DocumentSnapshot data: ${document.data}")
+        nextArrow.setOnClickListener {
+            nextClicker++
+            getNext(first, db, nextClicker)
+        }
+        previousArrow.setOnClickListener {
+            if(nextClicker > 1)
+            {
+                nextClicker--
+                getNext(first, db, nextClicker)
+            }
+        }
+    }
 
-                   // locationTextView.text = document.getString("locationTitle")
+    private fun getNext(first: Query, db: FirebaseFirestore, indexFam: Int) {
+        first.get().addOnSuccessListener { queryDocumentSnapshots ->
+            val lastVisible = queryDocumentSnapshots.documents[queryDocumentSnapshots.size() - indexFam]
+            val next = db.collection("Post").orderBy("timestamp").startAfter(lastVisible).limit(1)
+            next.get().addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d(TAG, "${document.id} => $${document.data}")
                     locationTextView.setText(document.getString("Name"))
                     descriptionTextView.setText(document.getString("description"))
-                    val imageName = "Puppy"
+                    val imageName = document.getString("Name")
                     val storageRef = FirebaseStorage.getInstance().reference.child("Images/$imageName")
-
                     val localFile = File.createTempFile("tempImage", "jpeg")
                     storageRef.getFile(localFile).addOnSuccessListener {
-
                         val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
                         usersImage.setImageBitmap(bitmap)
                     }
                 }
-                else {
-                    Log.d("noExist", "No Such Document")
-                }
             }
-
-        nextArrow.setOnClickListener {
-
         }
+    }
+    // Can't get this to return the actual size! SMH!
+    private fun getPostSize(first: Query): Int {
+        var postSizeFam = 0
+        first.get().addOnSuccessListener { documents ->
+            for(document in documents) {
+                Log.d(TAG, "${document.id} => ${document.data}")
+                postSizeFam++
+            }
+        }
+        return postSizeFam
     }
 }

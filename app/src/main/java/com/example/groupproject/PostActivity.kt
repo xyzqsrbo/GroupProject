@@ -55,6 +55,7 @@ class PostActivity : Fragment() {
         locationText = main.findViewById(R.id.location)
         cancelButton = main.findViewById(R.id.cancel)
         postButton = main.findViewById(R.id.post)
+        val storageRef = FirebaseStorage.getInstance().reference.child("Images")
         auth = FirebaseAuth.getInstance()
         cancelButton.setOnClickListener{
 
@@ -186,9 +187,10 @@ class PostActivity : Fragment() {
         )
         db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
         // Set the database document to be the location of the post.
-       db.collection("Add Post").document(location).set(post)
+        db.collection("Post").document(location).set(post)
         Toast.makeText(activity, "Successfully Post", Toast.LENGTH_SHORT).show()
         startActivity(Intent(activity, InspectPostActivity::class.java))
+        //finish()
 
     }
     private fun cancel(){
