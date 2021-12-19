@@ -36,6 +36,7 @@ class InspectPostActivity : AppCompatActivity() {
     var dislikeCounter = 0
     var nextClicker = 2 // Since the original page pop up will be 1, this will be the one after it
     var postSize = 0
+    var actualPostSize = 0
     private lateinit var likeButton: Button
     private lateinit var dislikeButton: Button
     private lateinit var likeIncrementer: TextView
@@ -67,9 +68,16 @@ class InspectPostActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val first = db.collection("Post").orderBy("timestamp")
         getNext(first, db, 2) // This is the original pop up
-        postSize = getPostSize(first)
-        commentSection.setText(postSize.toString()) // I was trying to display the number in the comment to see if it is actually returning the size
-
+        getPostSizeAsync(first) { postSize ->
+            commentSection.setText(postSize.toString())  // I was trying to display the number in the comment to see if it is actually returning the size
+            nextArrow.setOnClickListener {
+                nextClicker++
+                if(nextClicker == postSize) {
+                    nextClicker = 2
+                }
+                getNext(first, db, nextClicker)
+            }
+        }
         // When clicked, it increments the like count
         likeButton.setOnClickListener {
             if (!liked) {
@@ -96,12 +104,7 @@ class InspectPostActivity : AppCompatActivity() {
                 dislikeIncrementer.setText("$dislikeCounter")
             }
         }
-        // Sets the text to the database location
-
-        nextArrow.setOnClickListener {
-            nextClicker++
-            getNext(first, db, nextClicker)
-        }
+        // This is for the previous button clicker
         previousArrow.setOnClickListener {
             if(nextClicker > 1)
             {
@@ -110,7 +113,6 @@ class InspectPostActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun getNext(first: Query, db: FirebaseFirestore, indexFam: Int) {
         first.get().addOnSuccessListener { queryDocumentSnapshots ->
             val lastVisible = queryDocumentSnapshots.documents[queryDocumentSnapshots.size() - indexFam]
@@ -131,15 +133,11 @@ class InspectPostActivity : AppCompatActivity() {
             }
         }
     }
-    // Can't get this to return the actual size! SMH!
-    private fun getPostSize(first: Query): Int {
-        var postSizeFam = 0
+    // This is to get the size of the database collection of documents. It needs to be in a callback.
+    private fun getPostSizeAsync(first: Query, callback: (Int) -> Unit) {
         first.get().addOnSuccessListener { documents ->
-            for(document in documents) {
-                Log.d(TAG, "${document.id} => ${document.data}")
-                postSizeFam++
-            }
+            val postSize = documents.count()
+            callback(postSize)
         }
-        return postSizeFam
     }
 }
