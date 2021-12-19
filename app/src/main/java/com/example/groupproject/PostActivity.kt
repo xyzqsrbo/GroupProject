@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -168,15 +169,41 @@ class PostActivity : AppCompatActivity() {
                 if(progressDialog.isShowing) progressDialog.dismiss()
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
+        val db2 = FirebaseFirestore.getInstance()
+
+
         val db = Firebase.firestore
+
+        db2.collection("Account").whereEqualTo("uid", auth.currentUser!!.uid).limit(1).get()
+            .addOnSuccessListener { result ->
+                val post = hashMapOf(
+                    "uid" to auth.currentUser!!.uid,
+                    "timestamp" to Timestamp(Date()),
+                    "Name" to location,
+                    "description" to description,
+                    "likes" to 0,
+                    "dislikes" to 0,
+                    "username" to result.toString(),
+                    "lat" to 0,
+                    "long" to 0,
+                    "imageName" to "$location image"
+                )
+                db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
+                // Set the database document to be the location of the post.
+                db.collection("Post").document(location).set(post)
+                Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, InspectPostActivity::class.java))
+
+        }
+        /*
         val post = hashMapOf(
-            //    "uid" to auth.currentUser!!.uid,
+            "uid" to auth.currentUser!!.uid,
             "timestamp" to Timestamp(Date()),
             "Name" to location,
             "description" to description,
             "likes" to 0,
             "dislikes" to 0,
-            "username" to "empty",
+            "username" to "",
             "lat" to 0,
             "long" to 0,
             "imageName" to "$location image"
@@ -188,6 +215,7 @@ class PostActivity : AppCompatActivity() {
         startActivity(Intent(this, InspectPostActivity::class.java))
         //finish()
 
+         */
     }
     private fun cancel(){
         finish()
