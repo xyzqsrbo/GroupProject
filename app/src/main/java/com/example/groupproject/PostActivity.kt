@@ -120,17 +120,6 @@ class PostActivity : Fragment() {
          */
         return main
     }
-    /* For the user to be logged in
-    private fun logon() {
-        var providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build()
-        )
-        startActivityForResult(
-            AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(providers).build(), AUTH_REQUIRED
-        )
-    }
-    */
     private fun pickImageGallery()
     {
         val intent = Intent(Intent.ACTION_PICK)
@@ -146,11 +135,6 @@ class PostActivity : Fragment() {
             imageView.setImageURI(imageUri)
             button.setY(225F) // This will move the button down below the image so it is not overlapping it.
         }
-        /* This is when I work on the users
-        else if (requestCode == AUTH_REQUEST_CODE) {
-            user = FirebaseAuth.getInstance().currentUser
-        }
-         */
     }
     private fun uploadImage(location: String, description: String) {
         val progressDialog = ProgressDialog(activity)
@@ -174,10 +158,7 @@ class PostActivity : Fragment() {
                 Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
             }
         val db2 = FirebaseFirestore.getInstance()
-
-
         val db = Firebase.firestore
-
         db2.collection("Account").whereEqualTo("uid", auth.currentUser!!.uid).limit(1).get()
             .addOnSuccessListener { result ->
                 for(document in result) {
@@ -193,7 +174,7 @@ class PostActivity : Fragment() {
                         "long" to 0,
                         "imageName" to "$location image"
                     )
-                    db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
+                   // db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
 
                     // Set the database document to be the location of the post.
                     db.collection("Post").document(location).set(post)

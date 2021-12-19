@@ -139,7 +139,7 @@ class ProfileActivity : Fragment(), PostsAdapter.ClickedItem {
 
     override fun clickedItem(post: Post) {
         var post1 = post
-        startActivity(Intent(activity, InspectPostActivity::class.java).putExtra("Post", post1))
+        startActivity(Intent(activity, InspectPostActivity::class.java).putExtra("data", post1.username))
     }
 
     /**

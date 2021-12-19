@@ -93,36 +93,6 @@
         app:layout_constraintStart_toEndOf="@id/usersImage"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/commentSection"
-        android:layout_width="271dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="25dp"
-        android:background="@color/lightGray"
-        android:gravity="center"
-        android:text="@string/comment_section"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.54" />
-
-    <TextView
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="25dp"
-        android:ems="10"
-        android:gravity="center"
-        android:text="@string/Comments"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.272" />
-
     <Button
         android:id="@+id/likeButton"
         android:layout_width="75dp"

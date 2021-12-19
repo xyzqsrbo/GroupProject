@@ -17,7 +17,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.*
+import com.example.groupproject.profile_page.User
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
@@ -46,9 +48,9 @@ class InspectPostActivity : AppCompatActivity() {
     private lateinit var previousArrow: Button
     private lateinit var nextArrow: Button
     private lateinit var usersImage: ImageView
-    private lateinit var commentSection: TextView
     private lateinit var date: Timestamp
-
+    private lateinit var auth: FirebaseAuth
+    // var user: User?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inspect_post)
@@ -63,12 +65,12 @@ class InspectPostActivity : AppCompatActivity() {
         previousArrow = findViewById(R.id.backArrow)
         nextArrow = findViewById(R.id.forwardArrow)
         usersImage = findViewById(R.id.usersImage)
-        commentSection = findViewById(R.id.commentSection)
-
-
-
+        auth = FirebaseAuth.getInstance()
+     //   var username: String = intent.getStringExtra("data")!!.toString()
         val db = FirebaseFirestore.getInstance()
+       // val first = db.collection("Post").whereEqualTo("username", username)
         val first = db.collection("Post").orderBy("timestamp")
+        first.whereEqualTo("uid", auth.currentUser!!.uid)
         getNext(first, db, 2) // This is the original pop up
         getPostSizeAsync(first) { postSize ->
             nextArrow.setOnClickListener {
@@ -115,9 +117,11 @@ class InspectPostActivity : AppCompatActivity() {
         }
     }
     private fun getNext(first: Query, db: FirebaseFirestore, indexFam: Int) {
+    //    var username: String = intent.getStringExtra("data")!!.toString()
         first.get().addOnSuccessListener { queryDocumentSnapshots ->
             val lastVisible = queryDocumentSnapshots.documents[queryDocumentSnapshots.size() - indexFam]
-            val next = db.collection("Post").orderBy("timestamp").startAfter(lastVisible).limit(1)
+         //   val next = db.collection("Post").whereEqualTo("username", username).startAfter(lastVisible).limit(1)
+            val next = db.collection("Post").whereEqualTo("uid", auth.currentUser!!.uid).startAfter(lastVisible).limit(1)
             next.get().addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => $${document.data}")
