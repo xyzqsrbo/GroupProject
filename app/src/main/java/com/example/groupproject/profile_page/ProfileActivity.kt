@@ -1,4 +1,5 @@
 package com.example.groupproject.profile_page
+
 /**
  * Author: Cameron Triplett
  * Date: December 1, 2021
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.groupproject.InspectPostActivity
 import com.example.groupproject.R
 import com.example.groupproject.search_page.SearchActivity
 import com.example.groupproject.showToast
@@ -29,12 +31,13 @@ import kotlinx.android.synthetic.main.profile_page.*
 /**
  * This class is the activity page for the logged in user profile
  */
-class ProfileActivity : Fragment() {
+class ProfileActivity : Fragment(), PostsAdapter.ClickedItem {
     var user: User? = null
     private lateinit var auth: FirebaseAuth
-    private lateinit var main:View
+    var postAdapter: PostsAdapter? = null
+    private lateinit var main: View
 
-    companion object{
+    companion object {
         val TAG: String = ProfileActivity::class.java.simpleName
     }
 
@@ -42,10 +45,11 @@ class ProfileActivity : Fragment() {
      * This method sets the view to the profile_page
      * @param savedInstanceState: the saved state of the page
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        main =  inflater.inflate(R.layout.profile_page, container, false)
+        main = inflater.inflate(R.layout.profile_page, container, false)
 
 
         //Get all views in the page
@@ -61,21 +65,19 @@ class ProfileActivity : Fragment() {
         var user: User
         //Set the user to the logged in user
         val currentUser = Firebase.auth.currentUser
-        if(currentUser != null){
+        if (currentUser != null) {
             val uid = currentUser.uid
             db.collection("Account").get().addOnSuccessListener { result ->
-                for(document in result) {
+                for (document in result) {
                     if (document.getString("uid")!!.toString() == uid) {
                         fName = document.getString("first")!!.toString()
                         lName = document.getString("last")!!.toString()
                         username = document.getString("username")!!.toString()
                         bio = document.getString("description")!!.toString()
-                        //user = User(username, fName, lName, bio)
+                        user = User(username, fName, lName, bio)
                         break
                     }
                 }
-                //Change the action bar on top to username
-
                 //Set all appropriate data to on the page
                 profilePicture.setImageResource(R.drawable.ic_user_picture)
                 textName.text = ("$fName $lName")
@@ -85,24 +87,21 @@ class ProfileActivity : Fragment() {
                 textName.text = ("Failed to Load in")
                 txtBiography.text = ("Failed to load in the user profile")
             }
-        }else{
+        } else {
             Toast.makeText(activity, "Failed to load in profile", Toast.LENGTH_SHORT).show()
             textName.text = ("Failed to Load in")
             txtBiography.text = ("Failed to load in the user profile")
         }
 
-
         //Set on click listeners the search friend button and settings button
-        btnSearchFriend.setOnClickListener{
+        btnSearchFriend.setOnClickListener {
             startActivity(Intent(activity, SearchActivity::class.java))
         }
-        btnSettings.setOnClickListener{
+        btnSettings.setOnClickListener {
             Log.i(TAG, "setting button was clicked!")
             activity?.showToast("Settings button was clicked!")
+            //startActivity(Intent(activity, SettingsActivity::class.java).putExtra("User", user))
         }
-
-
-
 
         var post: Post
         var postId: String
@@ -114,9 +113,9 @@ class ProfileActivity : Fragment() {
             .get()
             .addOnSuccessListener { result ->
                 //get the posts that are made by the user
-                for(document in result){
+                for (document in result) {
                     postUsername = document.getString("username")!!.toString()
-                    if(postUsername == username){
+                    if (postUsername == username) {
                         postId = document.getString("Name")!!.toString()
                         //change this later
                         picture = R.drawable.ic_user_picture
@@ -126,6 +125,9 @@ class ProfileActivity : Fragment() {
                 }
                 //setup the recycler view to the logged in users posts
                 setupRecyclerView(posts)
+                postAdapter = PostsAdapter(this)
+                postAdapter!!.setData(posts)
+                recyclerView.adapter = postAdapter
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(activity, "Failed to load in posts", Toast.LENGTH_SHORT).show()
@@ -134,17 +136,20 @@ class ProfileActivity : Fragment() {
         return main
     }
 
+    override fun clickedItem(post: Post) {
+        var post1 = post
+        startActivity(Intent(activity, InspectPostActivity::class.java).putExtra("Post", post1))
+    }
+
     /**
      * This method sets up the recycler view to the posts for the page
      */
-    private fun setupRecyclerView(posts: ArrayList<Post>){
-
+    private fun setupRecyclerView(posts: ArrayList<Post>) {
         //set the layout to linear and make the posts into a grid
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
-
-        //set the adapter to the posts
-        val adapter = PostsAdapter(requireContext(), posts)
-        recyclerView.adapter = adapter
     }
+
+
 }

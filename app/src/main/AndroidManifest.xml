@@ -27,14 +27,12 @@
             android:name=".SignUpActivity"
             android:exported="true"
             android:parentActivityName=".MainPage" />
+
         <activity
             android:name=".MainPage"
             android:exported="true" />
         <activity
             android:name=".InspectPostActivity"
-            android:exported="true" />
-        <activity
-            android:name=".profile_page.PostsActivity"
             android:exported="true" />
         <activity
             android:name=".LogInActivity"
@@ -50,7 +48,7 @@
         <activity
             android:name=".search_page.SearchActivity"
             android:exported="true"
-            android:parentActivityName=".profile_page.ProfileActivity"/>
+            android:parentActivityName=".MainPage"/>
         <activity
             android:name=".search_page.SearchedProfileActivity"
             android:exported="true"

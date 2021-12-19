@@ -1,4 +1,5 @@
 package com.example.groupproject.profile_page
+
 /**
  * Author: Cameron Triplett
  * Date: December 1, 2021
@@ -9,16 +10,63 @@ import android.view.View
 import android.view.ViewGroup
 import android.util.Log
 import android.content.Context
+import android.content.Intent
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.post.view.*
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.example.groupproject.R
+import com.example.groupproject.search_page.SearchActivity
 
 /**
  * This class is the recycler view adapter to the posts
  * @param context: context of the page
  * @param posts: the list of posts being set to the page
  */
+
+class PostsAdapter(val clickedItem: ClickedItem) :
+    RecyclerView.Adapter<PostsAdapter.MyViewHolder>() {
+    var postList = ArrayList<Post>()
+
+    fun setData(postList: ArrayList<Post>) {
+        this.postList = postList
+        notifyDataSetChanged()
+    }
+
+    interface ClickedItem {
+        fun clickedItem(post: Post)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.post, parent, false)
+        )
+    }
+
+    override fun getItemCount(): Int {
+        return postList.size
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        var post = postList[position]
+
+        holder.image.setImageResource(post.picture)
+        holder.username.text = post.username
+
+        holder.itemView.setOnClickListener {
+            clickedItem.clickedItem(post)
+        }
+    }
+
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var image: ImageView = itemView.imgPostMod0
+        var username = itemView.txtPostMod0
+    }
+}
+
+
+/*
 class PostsAdapter(val context: Context, private val posts: ArrayList<Post>) :
     RecyclerView.Adapter<PostsAdapter.MyViewHolder>() {
     companion object {
@@ -68,6 +116,7 @@ class PostsAdapter(val context: Context, private val posts: ArrayList<Post>) :
                 currentPost?.let {
                     Log.i(TAG, currentPost!!.postId + " Clicked!")
                     Toast.makeText(context, currentPost!!.postId + " Clicked!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@PostsAdapter, SearchActivity::class.java))
                 }
             }
         }
@@ -89,3 +138,7 @@ class PostsAdapter(val context: Context, private val posts: ArrayList<Post>) :
         }
     }
 }
+
+ */
+
+

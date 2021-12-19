@@ -44,11 +44,6 @@ class SearchActivity : AppCompatActivity(), SearchAdapter.ClickedItem{
         var bio: String
         var user: User
 
-        //Change the action bar on top to show back arrow and change title
-        val actionBar = supportActionBar
-        actionBar!!.title = "Search Users"
-        actionBar.setDisplayHomeAsUpEnabled(true)
-
         //set user recycler view to linear
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)

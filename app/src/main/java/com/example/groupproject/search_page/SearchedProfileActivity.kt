@@ -1,9 +1,11 @@
 package com.example.groupproject.search_page
+
 /**
  * Author: Cameron Triplett
  * Date: December 1, 2021
  * Modified: December 13, 2021
  */
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.groupproject.InspectPostActivity
 import com.example.groupproject.R
 import com.example.groupproject.profile_page.Post
 import com.example.groupproject.profile_page.PostsAdapter
@@ -20,15 +23,18 @@ import com.example.groupproject.showToast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_searched_profile.*
+import kotlinx.android.synthetic.main.profile_page.*
+
 
 /**
  * This class is the setter for the searched user's profile page
  */
-class SearchedProfileActivity : AppCompatActivity() {
+class SearchedProfileActivity : AppCompatActivity(), PostsAdapter.ClickedItem {
 
     var user: User? = null
+    var postAdapter: PostsAdapter? = null
 
-    companion object{
+    companion object {
         val TAG: String = ProfileActivity::class.java.simpleName
     }
 
@@ -43,18 +49,13 @@ class SearchedProfileActivity : AppCompatActivity() {
         //Get the searched user from previous view
         user = intent.getSerializableExtra("data") as User
 
-        //Set the action bar to the correct title and put up a return arrow
-        val actionBar = supportActionBar
-        actionBar!!.title = user!!.username
-        actionBar.setDisplayHomeAsUpEnabled(true)
-
         //Set page data
         profileSearchPicture.setImageResource(R.drawable.ic_user_picture)
         textSearchName.text = (user!!.fName + " " + user!!.lName)
         txtSearchBiography.text = user!!.bio
 
         //Set on click listener to add friends
-        btnAddFriend.setOnClickListener{
+        btnAddFriend.setOnClickListener {
             Log.i(TAG, "add friend button was clicked!")
             showToast("add friend button was clicked!")
         }
@@ -70,9 +71,9 @@ class SearchedProfileActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { result ->
                 //get the posts that are made by the user
-                for(document in result){
+                for (document in result) {
                     username = document.getString("username")!!.toString()
-                    if(username == user!!.username){
+                    if (username == user!!.username) {
                         postId = document.getString("Name")!!.toString()
                         //change this later
                         picture = R.drawable.ic_user_picture
@@ -83,22 +84,32 @@ class SearchedProfileActivity : AppCompatActivity() {
                 }
                 //Setup the posts recycler view
                 setupRecyclerView(posts)
+                postAdapter = PostsAdapter(this)
+                postAdapter!!.setData(posts)
+                recyclerView.adapter = postAdapter
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to load in posts", Toast.LENGTH_SHORT).show()
             }
     }
 
+    override fun clickedItem(post: Post) {
+        var post1 = post
+        startActivity(
+            Intent(
+                this@SearchedProfileActivity,
+                InspectPostActivity::class.java
+            ).putExtra("Post", post1)
+        )
+    }
+
     /**
      * This method sets up the recycler view to the posts for the page
      */
-    private fun setupRecyclerView(posts: ArrayList<Post>){
+    private fun setupRecyclerView(posts: ArrayList<Post>) {
         //Set the layout of the recycler view
-        recyclerViewSearch.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerViewSearch.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewSearch.layoutManager = GridLayoutManager(this, 3)
-
-        //Set the adapter to the recycler view
-        val adapter = PostsAdapter(this, posts)
-        recyclerViewSearch.adapter = adapter
     }
 }
