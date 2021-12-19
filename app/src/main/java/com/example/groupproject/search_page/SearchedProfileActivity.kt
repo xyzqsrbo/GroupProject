@@ -86,7 +86,7 @@ class SearchedProfileActivity : AppCompatActivity(), PostsAdapter.ClickedItem {
                 setupRecyclerView(posts)
                 postAdapter = PostsAdapter(this)
                 postAdapter!!.setData(posts)
-                recyclerView.adapter = postAdapter
+                recyclerViewSearch.adapter = postAdapter
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to load in posts", Toast.LENGTH_SHORT).show()
