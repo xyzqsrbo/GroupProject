@@ -42,4 +42,5 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_update">update</string>
+    <string name="textview">WARNING: This will delete your Account. This is irreversible</string>
 </resources>

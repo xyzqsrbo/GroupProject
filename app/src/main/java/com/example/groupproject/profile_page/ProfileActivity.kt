@@ -22,6 +22,7 @@ import com.example.groupproject.InspectPostActivity
 import com.example.groupproject.R
 import com.example.groupproject.search_page.SearchActivity
 import com.example.groupproject.showToast
+import com.example.groupproject.update
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
