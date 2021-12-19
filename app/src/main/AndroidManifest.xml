@@ -36,8 +36,7 @@
             android:parentActivityName=".MapsActivity"/>
         <activity
             android:name=".LogInActivity"
-            android:exported="true"
-            android:parentActivityName=".MapsActivity">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

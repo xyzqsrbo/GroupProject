@@ -180,23 +180,26 @@ class PostActivity : Fragment() {
 
         db2.collection("Account").whereEqualTo("uid", auth.currentUser!!.uid).limit(1).get()
             .addOnSuccessListener { result ->
-                val post = hashMapOf(
-                    "uid" to auth.currentUser!!.uid,
-                    "timestamp" to Timestamp(Date()),
-                    "Name" to location,
-                    "description" to description,
-                    "likes" to 0,
-                    "dislikes" to 0,
-                    "username" to result.toString(),
-                    "lat" to 0,
-                    "long" to 0,
-                    "imageName" to "$location image"
-                )
-                db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
-                // Set the database document to be the location of the post.
-                db.collection("Post").document(location).set(post)
-                Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, InspectPostActivity::class.java))
+                for(document in result) {
+                    val post = hashMapOf(
+                        "uid" to auth.currentUser!!.uid,
+                        "timestamp" to Timestamp(Date()),
+                        "Name" to location,
+                        "description" to description,
+                        "likes" to 0,
+                        "dislikes" to 0,
+                        "username" to document.getString("username")!!.toString(),
+                        "lat" to 0,
+                        "long" to 0,
+                        "imageName" to "$location image"
+                    )
+                    db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
+
+                    // Set the database document to be the location of the post.
+                    db.collection("Post").document(location).set(post)
+                    Toast.makeText(activity, "Successfully Post", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(activity, InspectPostActivity::class.java))
+                }
 
         }
         /*

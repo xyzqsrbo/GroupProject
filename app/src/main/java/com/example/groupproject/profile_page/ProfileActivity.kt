@@ -101,7 +101,7 @@ class ProfileActivity : Fragment(), PostsAdapter.ClickedItem {
         btnSettings.setOnClickListener {
             Log.i(TAG, "setting button was clicked!")
             activity?.showToast("Settings button was clicked!")
-            //startActivity(Intent(activity, SettingsActivity::class.java).putExtra("User", user))
+            startActivity(Intent(activity, update::class.java))
         }
 
         var post: Post
