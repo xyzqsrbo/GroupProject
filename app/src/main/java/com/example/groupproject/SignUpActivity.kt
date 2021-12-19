@@ -33,7 +33,6 @@ class SignUpActivity : AppCompatActivity() {
         //setup the top bar to sign up
         val actionBar = supportActionBar
         actionBar!!.title = "Sign Up"
-        actionBar.setDisplayHomeAsUpEnabled(true)
 
         //setup all my elements on the page to my variables
         email = findViewById(R.id.editTextTextPersonName)
