@@ -69,7 +69,7 @@ class InspectPostActivity : AppCompatActivity() {
         val first = db.collection("Post").orderBy("timestamp")
         getNext(first, db, 2) // This is the original pop up
         getPostSizeAsync(first) { postSize ->
-            commentSection.setText(postSize.toString())  // I was trying to display the number in the comment to see if it is actually returning the size
+          //  commentSection.setText(postSize.toString())  // I was trying to display the number in the comment to see if it is actually returning the size
             nextArrow.setOnClickListener {
                 nextClicker++
                 if(nextClicker == postSize) {
