@@ -20,19 +20,27 @@
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_update.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/content_update.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/delete_account.xml" value="0.19250253292806485" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_add.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_blank.xml" value="0.3265625" />
-        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_credential_update.xml" value="0.16109422492401215" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_credential_update.xml" value="0.33" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_delete_account.xml" value="0.40239043824701193" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_first.xml" value="0.3734375" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_first2.xml" value="0.3734375" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_map.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_profile.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_second.xml" value="0.3734375" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_second2.xml" value="0.3734375" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_security_check.xml" value="0.33" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_settings_main.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_terms.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_third2.xml" value="0.18135764944275581" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_user_update.xml" value="0.33" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/main_page.xml" value="0.18667679837892603" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/post.xml" value="0.3307291666666667" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/profile_page.xml" value="0.2341485507246377" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/row_items.xml" value="0.18667679837892603" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/search_activity.xml" value="0.18667679837892603" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/search_page.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/settings.xml" value="0.1" />
         <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/menu/bottom_menu.xml" value="0.3734375" />

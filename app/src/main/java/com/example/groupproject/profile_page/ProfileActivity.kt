@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.groupproject.R
 import com.example.groupproject.search_page.SearchActivity
 import com.example.groupproject.showToast
+import com.example.groupproject.update
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -97,8 +98,7 @@ class ProfileActivity : Fragment() {
             startActivity(Intent(activity, SearchActivity::class.java))
         }
         btnSettings.setOnClickListener{
-            Log.i(TAG, "setting button was clicked!")
-            activity?.showToast("Settings button was clicked!")
+            startActivity(Intent(activity, update::class.java))
         }
 
 

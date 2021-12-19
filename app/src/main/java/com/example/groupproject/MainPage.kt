@@ -60,6 +60,7 @@ class MainPage : AppCompatActivity() {
      * installed Google Play services and returned to the app.
      */
     private fun setupDrawerContent(navigationView: BottomNavigationView) {
+        selectDrawerItem(BlankFragment(), "World" )
         navigationView.setOnItemSelectedListener {
 
             when(it.itemId){
@@ -75,7 +76,9 @@ class MainPage : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmmentlayout, fragment)
         fragmentTransaction.commit()
-        setTitle(title)
+        if(title !="World") {
+            setTitle(title)
+        }
 
     }
 
