@@ -60,7 +60,7 @@ class PostActivity : AppCompatActivity() {
         val storageRef = FirebaseStorage.getInstance().reference.child("Images")
         auth = FirebaseAuth.getInstance()
         cancelButton.setOnClickListener{
-
+            startActivity(Intent(this, MainPage::class.java))
         }
         button.setOnClickListener{
             pickImageGallery()
@@ -106,7 +106,7 @@ class PostActivity : AppCompatActivity() {
             uploadImage(locationText.text.toString(), editText.text.toString())
           //  postContent(locationText.text.toString(), editText.text.toString())
         }
-        cancelButton.setOnClickListener { cancel() }
+
         // I want to have an <hr> tag below the location and description.
         val locationTextView: TextView = findViewById(R.id.locationView)
         val locationTextImage = getString(R.string.location_of_the_image)

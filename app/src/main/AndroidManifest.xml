@@ -48,7 +48,7 @@
         <activity
             android:name=".search_page.SearchActivity"
             android:exported="true"
-            android:parentActivityName=".MainPage"/>
+            android:parentActivityName=".profile_page.PostsActivity"/>
         <activity
             android:name=".search_page.SearchedProfileActivity"
             android:exported="true"

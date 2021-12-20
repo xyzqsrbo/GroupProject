@@ -10,14 +10,11 @@
         android:id="@+id/addImage"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="200dp"
         android:layout_marginStart="1dp"
-        android:layout_marginBottom="475dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        android:layout_marginEnd="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/location"
@@ -46,26 +43,14 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="145dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="75dp"
         android:background="@color/lightGray"
         android:gravity="center"
         android:hint="@string/description"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu"/>
 
     <Button
         android:id="@+id/post"
@@ -74,10 +59,8 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="159dp"
-        android:layout_marginBottom="75dp"
         android:backgroundTint="@color/green"
         android:text="@string/post"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
@@ -120,10 +103,8 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="75dp"
         android:backgroundTint="@color/red"
         android:text="@string/cancel"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
@@ -132,14 +113,16 @@
         android:id="@+id/uploadImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/upload_image"
         android:background="@drawable/button_transparent"
-        android:textStyle="bold"
+        android:text="@string/upload_image"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/addImage"
         app:layout_constraintEnd_toEndOf="@+id/addImage"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/addImage"
-        app:layout_constraintTop_toTopOf="@+id/addImage" />
+        app:layout_constraintTop_toTopOf="@+id/addImage"
+        app:layout_constraintVertical_bias="1.0" />
 
     <!--
     <androidx.fragment.app.FragmentContainerView
