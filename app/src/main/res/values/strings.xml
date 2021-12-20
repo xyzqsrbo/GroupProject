@@ -28,10 +28,6 @@
     <string name="drawer_close">close drawer</string>
     <string name="test">test</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment"> Terms are that you have to give up your entire family, the
-        rest of your life and your wine collection
-
-    </string>
     <string name="title_activity_settings">settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Settings</string>
@@ -43,4 +39,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_update">update</string>
     <string name="textview">WARNING: This will delete your Account. This is irreversible</string>
+    <string name="Terms">Terms: Signed up users are responsible for behavior.
+        Your data is stored by google firebase
+        We are not liable for any breaches of data
+
+    </string>
 </resources>

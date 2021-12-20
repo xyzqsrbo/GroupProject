@@ -28,11 +28,11 @@ private lateinit var bundle:Bundle
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [BlankFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * fragment for actually displaying the google maps portion of the page.
+ * Should load in instance of google maps and allow user to set markers and
+ * bring up the inspect post activity if clicking on an existing post
  */
-class BlankFragment : Fragment(), OnMapReadyCallback {
+class MappyFragment : Fragment(), OnMapReadyCallback {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -52,6 +52,11 @@ class BlankFragment : Fragment(), OnMapReadyCallback {
         return rootView
     }
 
+
+
+    /**
+    Loads when the map is fully ready to be rendered. adds in every location marker present in database
+     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
@@ -71,7 +76,8 @@ class BlankFragment : Fragment(), OnMapReadyCallback {
 
 
 
-
+        // If a user is clicking on an existing post, they should be sent to inspect post activity
+        //If a user is clicking on a custom marker they made, they will be sent to post activity
         mMap.setOnMarkerClickListener { marker ->
             if (marker == post) {
                 startActivity(Intent(activity, PostActivity::class.java).putExtra("data", bundle))
@@ -89,6 +95,8 @@ class BlankFragment : Fragment(), OnMapReadyCallback {
         var marker: Marker
         var markers:ArrayList<Marker> = ArrayList()
 
+
+        // loop to search for every post in database
         val db = Firebase.firestore
         db.collection("Post")
             .get()

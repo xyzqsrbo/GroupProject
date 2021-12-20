@@ -23,7 +23,8 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.profile_page.*
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * This subfragment loads in the users current profile details and allows the user to modify their details
+ * and set them in the database.
  */
 class personal_update : Fragment() {
 

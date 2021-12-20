@@ -23,7 +23,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * This subfragment effectively deletes the active users account from the database. This includes
+ * their account and effectively all of their posts
  */
 class delete_account : Fragment() {
 

@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_First2Fragment_to_PersonalFragment"
             app:destination="@id/PersonalFragment" />
+        <action
+            android:id="@+id/action_First2Fragment_to_TermsFragment"
+            app:destination="@id/TermsFragment" />
     </fragment>
 
     <fragment
@@ -79,6 +82,18 @@
             <action
                 android:id="@+id/action_Third2Fragment_to_First2Fragment"
                 app:destination="@+id/First2Fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/TermsFragment"
+        android:name="com.example.groupproject.terms_conditions"
+        android:label="Terms"
+        tools:layout="@layout/fragment_terms">
+
+
+        <action
+            android:id="@+id/action_Terms_to_First2Fragment"
+            app:destination="@+id/First2Fragment"/>
     </fragment>
 
 

@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Owner/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12314814814814815" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_log_in.xml" value="0.1" />
         <entry key="..\:/Users/Owner/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/Users/Trent/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_settings_main.xml" value="0.32447916666666665" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_log_in.xml" value="0.28306159420289856" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_maps.xml" value="0.28306159420289856" />
@@ -39,8 +40,8 @@
         <entry key="app/src/main/res/layout/fragment_security_check.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/fragment_settings_main.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/fragment_terms.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/main_page.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_user_update.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/main_page.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/post.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/profile_page.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/row_items.xml" value="0.2578125" />
@@ -50,7 +51,6 @@
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.2578125" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/menu/drawer_view.xml" value="0.13333333333333333" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2578125" />
         <entry key="app/src/main/res/menu/menu_example.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/MyPicture.xml" value="0.27395833333333336" />

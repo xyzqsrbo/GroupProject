@@ -29,7 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import java.lang.Exception
 
-
+// Activity to hold and swap fragments for both the map and the profile page
 class MainPage : AppCompatActivity() {
 
     private lateinit var mMap: GoogleMap
@@ -51,25 +51,24 @@ class MainPage : AppCompatActivity() {
     }
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+     * Sets up the drawer, to call selectDrawerItem when user clicks on the
+     * navbar.
      */
     private fun setupDrawerContent(navigationView: BottomNavigationView) {
-        selectDrawerItem(BlankFragment(), "World" )
+        selectDrawerItem(MappyFragment(), "World" )
         navigationView.setOnItemSelectedListener {
 
             when(it.itemId){
-                R.id.DorasMap -> selectDrawerItem(BlankFragment(), "World" )
+                R.id.DorasMap -> selectDrawerItem(MappyFragment(), "World" )
                 R.id.personal -> selectDrawerItem(ProfileActivity(), "Profile")
             }
             true
         }
     }
+
+    /**
+     * Grabs the fragment and replaces it with the appropiate fragment to load
+     */
     private fun selectDrawerItem(fragment: Fragment, title: String) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

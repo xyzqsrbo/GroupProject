@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Terms">
+    tools:context=".terms_conditions">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/Terms" />
 
 </FrameLayout>

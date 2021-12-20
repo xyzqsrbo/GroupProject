@@ -9,6 +9,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.groupproject.databinding.ActivityUpdateBinding
 
+/**
+ * This activity handles the container for settings page.
+ * So it loads in the first fragment for nav_graph2 in
+ * navigation
+ */
 class update : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration

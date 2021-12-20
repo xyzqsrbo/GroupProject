@@ -20,7 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * This subclass is for re authentication. In case the user needs to change email or password, they
+ * should re enter their current email and password.
  */
 class security_check : Fragment() {
 
@@ -49,13 +50,15 @@ class security_check : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         auth = Firebase.auth
         email = view.findViewById(R.id.confirm_email)
         password = view.findViewById(R.id.confirm_password)
         val uid = user.uid
         println(uid)
 
-
+        // When they click on submit, if their credentials are valid, they should be re authenticated
+        // and sent to credential upate
         binding.submit.setOnClickListener {
 
             credential = EmailAuthProvider.getCredential(email.text.toString(), password.text.toString())

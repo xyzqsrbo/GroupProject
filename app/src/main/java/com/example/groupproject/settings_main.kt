@@ -14,7 +14,9 @@ import com.google.firebase.ktx.Firebase
 import com.mysql.jdbc.log.Log
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * This subclass is the main page for settings. Its meant for simple navigation for the 4
+ * different actions it can perform. Each onclick listener navigates through nav_graph2 layout
+ * and performs the action in the xml.
  */
 class settings_main : Fragment() {
 
@@ -51,9 +53,16 @@ class settings_main : Fragment() {
             findNavController().navigate(R.id.action_First2Fragment_to_DeleteFragment)
         }
 
+        // This listener is for logout, so it just unauthorizes them and sends them to the login page
         binding.buttonFourth.setOnClickListener {
             Firebase.auth.signOut()
             startActivity(Intent(activity, LogInActivity::class.java))
+        }
+
+
+
+        binding.buttonFifth.setOnClickListener{
+            findNavController().navigate(R.id.action_First2Fragment_to_TermsFragment)
         }
     }
 
