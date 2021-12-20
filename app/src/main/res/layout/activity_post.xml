@@ -113,7 +113,7 @@
         android:id="@+id/uploadImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_transparent"
+        android:background="?android:attr/selectableItemBackground"
         android:text="@string/upload_image"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -122,7 +122,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/addImage"
         app:layout_constraintTop_toTopOf="@+id/addImage"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"/>
 
     <!--
     <androidx.fragment.app.FragmentContainerView
