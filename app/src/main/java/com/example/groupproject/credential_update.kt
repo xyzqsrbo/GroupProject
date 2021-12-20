@@ -1,5 +1,6 @@
 package com.example.groupproject
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -58,6 +59,7 @@ class credential_update : Fragment() {
             user.updateEmail(email.text.toString()).addOnCompleteListener {
                 user.updatePassword(password.text.toString()).addOnCompleteListener {
                     //send user back
+                    Toast.makeText(activity, "Changed Credentials!", Toast.LENGTH_SHORT).show()
                 }
 
             }

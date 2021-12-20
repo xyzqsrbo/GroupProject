@@ -3,57 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Owner/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12314814814814815" />
-        <entry key="..\:/Users/Owner/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_log_in.xml" value="0.1" />
-        <entry key="..\:/Users/Owner/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/drawable/white_border.xml" value="0.3828125" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_inspect_post.xml" value="0.35733695652173914" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_log_in.xml" value="0.28306159420289856" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_maps.xml" value="0.28306159420289856" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_post.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_settings.xml" value="0.35733695652173914" />
         <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_add_friend.xml" value="0.27395833333333336" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_comment.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable-anydpi/inspect.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable-anydpi/pictures.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/MyPicture_background.xml" value="0.27395833333333336" />
-        <entry key="app/src/main/res/drawable/button_transparent.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/ic_add_post.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/ic_baseline_chevron_left_24.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/ic_baseline_thumb_up_24.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/ic_map.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/drawable/textview_border.xml" value="0.27447916666666666" />
-        <entry key="app/src/main/res/layout/activity_inspect_post.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22871376811594202" />
-        <entry key="app/src/main/res/layout/activity_post.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_searched_profile.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/button_transparent.xml" value="0.23233695652173914" />
-        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.18704710144927536" />
-        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/fragment_delete_account.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.18704710144927536" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18704710144927536" />
-        <entry key="app/src/main/res/layout/fragment_security_check.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/fragment_settings_main.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/fragment_terms.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/main_page.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/fragment_user_update.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/post.xml" value="0.18704710144927536" />
-        <entry key="app/src/main/res/layout/profile_page.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/row_items.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/search_activity.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/search_page.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/settings.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/toolbar.xml" value="0.2578125" />
-        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.25833333333333336" />
-        <entry key="app/src/main/res/menu/drawer_view.xml" value="0.13333333333333333" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.2578125" />
-        <entry key="app/src/main/res/menu/menu_example.xml" value="0.13333333333333333" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/MyPicture.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/activity_update.xml" value="0.35733695652173914" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/content_update.xml" value="0.35733695652173914" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_blank.xml" value="0.35733695652173914" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_credential_update.xml" value="0.35733695652173914" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_settings_main.xml" value="0.35733695652173914" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/fragment_user_update.xml" value="0.35733695652173914" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/main_page.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/jacob/AndroidStudioProjects/GroupProject/app/src/main/res/layout/search_activity.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

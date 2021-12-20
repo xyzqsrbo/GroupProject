@@ -38,7 +38,6 @@ class settings_main : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         user = Firebase.auth.currentUser!!
-
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_First2Fragment_to_Second2Fragment)
         }

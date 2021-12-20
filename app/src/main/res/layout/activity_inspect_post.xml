@@ -70,30 +70,6 @@
         app:layout_constraintTop_toBottomOf="@id/usersImage" />
 
     <Button
-        android:id="@+id/backArrow"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginBottom="449dp"
-        app:icon="@drawable/ic_baseline_chevron_left_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/usersImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/forwardArrow"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginBottom="449dp"
-        app:icon="@drawable/ic_baseline_chevron_right_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/usersImage"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/likeButton"
         android:layout_width="75dp"
         android:layout_height="50dp"

@@ -21,7 +21,8 @@
             android:name=".update"
             android:exported="true"
             android:label="@string/title_activity_update"
-            android:theme="@style/Theme.GroupProject.NoActionBar" />
+            android:theme="@style/Theme.GroupProject.NoActionBar"
+            android:parentActivityName=".profile_page.PostsActivity"/>
         <activity
             android:name=".SignUpActivity"
             android:exported="true"/>
