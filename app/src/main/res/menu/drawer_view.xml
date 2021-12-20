@@ -6,10 +6,6 @@
         android:enabled="true"
         android:title="Map" />
     <item
-        android:id="@+id/cheapSkate"
-        android:enabled="true"
-        android:title="Add Post" />
-    <item
         android:id="@+id/personal"
         android:enabled="true"
         android:title="Profile" />

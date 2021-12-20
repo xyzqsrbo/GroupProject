@@ -1,5 +1,6 @@
 package com.example.groupproject
 
+import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.Intent
@@ -17,6 +18,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import com.example.groupproject.profile_page.User
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,7 +32,7 @@ import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PostActivity : Fragment() {
+class PostActivity : AppCompatActivity() {
     private lateinit var button: Button
     private lateinit var imageView: ImageView
     private lateinit var editText: EditText
@@ -38,24 +40,23 @@ class PostActivity : Fragment() {
     private lateinit var cancelButton: Button
     private lateinit var postButton: Button
     private lateinit var auth:FirebaseAuth
-    private lateinit var main:View
      lateinit var imageUri : Uri
 
     companion object{
         val IMAGE_REQUEST_CODE = 100
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?
-        ): View {
+    override fun onCreate(savedInstanceState: Bundle?
+        ) {
             // Inflate the layout for this fragment
-        main =  inflater.inflate(R.layout.activity_post, container, false)
-        button = main.findViewById(R.id.uploadImageButton)
-        imageView = main.findViewById(R.id.addImage)
-        editText = main.findViewById(R.id.description)
-        locationText = main.findViewById(R.id.location)
-        cancelButton = main.findViewById(R.id.cancel)
-        postButton = main.findViewById(R.id.post)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_post)
+        button = findViewById(R.id.uploadImageButton)
+        imageView = findViewById(R.id.addImage)
+        editText = findViewById(R.id.description)
+        locationText = findViewById(R.id.location)
+        cancelButton = findViewById(R.id.cancel)
+        postButton = findViewById(R.id.post)
         val storageRef = FirebaseStorage.getInstance().reference.child("Images")
         auth = FirebaseAuth.getInstance()
         cancelButton.setOnClickListener{
@@ -89,14 +90,14 @@ class PostActivity : Fragment() {
             when {
                 TextUtils.isEmpty(locationText.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
-                        activity,
+                        this,
                         "Please enter a location.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
                 TextUtils.isEmpty(editText.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
-                        activity,
+                        this,
                         "Please enter a description.",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -107,7 +108,7 @@ class PostActivity : Fragment() {
         }
         cancelButton.setOnClickListener { cancel() }
         // I want to have an <hr> tag below the location and description.
-        val locationTextView: TextView = main.findViewById(R.id.locationView)
+        val locationTextView: TextView = findViewById(R.id.locationView)
         val locationTextImage = getString(R.string.location_of_the_image)
         val tagHandler = HtmlTagHandler()
         locationTextView.text = HtmlCompat.fromHtml(locationTextImage, HtmlCompat.FROM_HTML_MODE_LEGACY, null, tagHandler)
@@ -118,7 +119,7 @@ class PostActivity : Fragment() {
 
         textView.text = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY, null, tagHandler)
          */
-        return main
+
     }
     private fun pickImageGallery()
     {
@@ -137,7 +138,7 @@ class PostActivity : Fragment() {
         }
     }
     private fun uploadImage(location: String, description: String) {
-        val progressDialog = ProgressDialog(activity)
+        val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Uploading")
         progressDialog.setCancelable(false)
         progressDialog.show()
@@ -150,15 +151,17 @@ class PostActivity : Fragment() {
         storageReference.putFile(imageUri).
                 addOnSuccessListener {
                     imageView.setImageURI(null)
-                    Toast.makeText(activity, "Successfully Uploaded", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Successfully Uploaded", Toast.LENGTH_SHORT).show()
                     if(progressDialog.isShowing) progressDialog.dismiss()
                 }
             .addOnFailureListener{
                 if(progressDialog.isShowing) progressDialog.dismiss()
-                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
         val db2 = FirebaseFirestore.getInstance()
         val db = Firebase.firestore
+
+        var bundle = intent.getBundleExtra("data") as Bundle
         db2.collection("Account").whereEqualTo("uid", auth.currentUser!!.uid).limit(1).get()
             .addOnSuccessListener { result ->
                 for(document in result) {
@@ -170,16 +173,16 @@ class PostActivity : Fragment() {
                         "likes" to 0,
                         "dislikes" to 0,
                         "username" to document.getString("username")!!.toString(),
-                        "lat" to 0,
-                        "long" to 0,
+                        "lat" to bundle.get("lat"),
+                        "long" to bundle.get("long"),
                         "imageName" to "$location image"
                     )
                    // db.collection("Add Post").orderBy("Description", Query.Direction.DESCENDING)
 
                     // Set the database document to be the location of the post.
                     db.collection("Post").document(location).set(post)
-                    Toast.makeText(activity, "Successfully Post", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(activity, InspectPostActivity::class.java))
+                    Toast.makeText(this, "Successfully Post", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainPage::class.java))
                 }
 
         }

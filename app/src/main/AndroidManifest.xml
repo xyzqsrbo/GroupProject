@@ -71,6 +71,10 @@
 
         </activity>
 
+        <activity android:name=".PostActivity"
+            android:exported="true"
+            android:parentActivityName=".MapsActivity"/>
+
     </application>
 
 </manifest>

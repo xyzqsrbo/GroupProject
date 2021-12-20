@@ -6,6 +6,7 @@ package com.example.groupproject.search_page
  * Modified: December 13, 2021
  */
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,8 +23,10 @@ import com.example.groupproject.profile_page.User
 import com.example.groupproject.showToast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_searched_profile.*
 import kotlinx.android.synthetic.main.profile_page.*
+import java.io.File
 
 
 /**
@@ -50,7 +53,14 @@ class SearchedProfileActivity : AppCompatActivity(), PostsAdapter.ClickedItem {
         user = intent.getSerializableExtra("data") as User
 
         //Set page data
-        profileSearchPicture.setImageResource(R.drawable.ic_user_picture)
+        val imageName = user!!.username
+        val storageRef = FirebaseStorage.getInstance().reference.child("Images/$imageName")
+        val localFile = File.createTempFile("tempImage", "jpeg")
+        storageRef.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            profileSearchPicture.setImageBitmap(bitmap)
+        }
+        //profileSearchPicture.setImageResource(R.drawable.ic_user_picture)
         textSearchName.text = (user!!.fName + " " + user!!.lName)
         txtSearchBiography.text = user!!.bio
 
@@ -76,6 +86,7 @@ class SearchedProfileActivity : AppCompatActivity(), PostsAdapter.ClickedItem {
                     if (username == user!!.username) {
                         postId = document.getString("Name")!!.toString()
                         //change this later
+
                         picture = R.drawable.ic_user_picture
                         post = Post(picture, username, postId)
                         posts.add(post)
@@ -99,7 +110,7 @@ class SearchedProfileActivity : AppCompatActivity(), PostsAdapter.ClickedItem {
             Intent(
                 this@SearchedProfileActivity,
                 InspectPostActivity::class.java
-            ).putExtra("Post", post1)
+            ).putExtra("data", post1.postId)
         )
     }
 

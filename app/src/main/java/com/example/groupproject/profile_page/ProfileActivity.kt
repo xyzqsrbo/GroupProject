@@ -8,6 +8,7 @@ package com.example.groupproject.profile_page
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.profile_page.*
+import java.io.File
 
 /**
  * This class is the activity page for the logged in user profile
@@ -80,7 +83,13 @@ class ProfileActivity : Fragment(), PostsAdapter.ClickedItem {
                     }
                 }
                 //Set all appropriate data to on the page
-                profilePicture.setImageResource(R.drawable.ic_user_picture)
+                val imageName = username
+                val storageRef = FirebaseStorage.getInstance().reference.child("Images/$imageName")
+                val localFile = File.createTempFile("tempImage", "jpeg")
+                storageRef.getFile(localFile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                    profilePicture.setImageBitmap(bitmap)
+                }
                 textName.text = ("$fName $lName")
                 txtBiography.text = bio
             }.addOnFailureListener { exception ->
@@ -120,6 +129,7 @@ class ProfileActivity : Fragment(), PostsAdapter.ClickedItem {
                         postId = document.getString("Name")!!.toString()
                         //change this later
                         picture = R.drawable.ic_user_picture
+
                         post = Post(picture, username, postId)
                         posts.add(post)
                     }
@@ -139,7 +149,7 @@ class ProfileActivity : Fragment(), PostsAdapter.ClickedItem {
 
     override fun clickedItem(post: Post) {
         var post1 = post
-        startActivity(Intent(activity, InspectPostActivity::class.java).putExtra("data", post1.username))
+        startActivity(Intent(activity, InspectPostActivity::class.java).putExtra("data", post1.postId))
     }
 
     /**

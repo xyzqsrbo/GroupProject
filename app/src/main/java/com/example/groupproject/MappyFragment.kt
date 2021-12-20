@@ -13,7 +13,9 @@ import androidx.core.widget.doAfterTextChanged
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,6 +24,7 @@ import com.google.firebase.ktx.Firebase
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private lateinit var mMap: GoogleMap
 private lateinit var mMapView: MapView
+private lateinit var bundle:Bundle
 
 
 /**
@@ -34,6 +37,7 @@ class BlankFragment : Fragment(), OnMapReadyCallback {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var mSearchText: EditText
+    var post:Marker? = null
 
 
     override fun onCreateView(
@@ -44,6 +48,7 @@ class BlankFragment : Fragment(), OnMapReadyCallback {
         mSearchText = rootView.findViewById(R.id.input_search)
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        activity?.setTitle("World")
         return rootView
     }
 
@@ -51,13 +56,32 @@ class BlankFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
 
 
+        mMap.setOnMapClickListener { location ->
+            bundle = Bundle()
+            bundle.putDouble("lat", location.latitude)
+            bundle.putDouble("long", location.longitude)
+
+            if (post != null) {
+                post!!.remove()
+                post = null
+            }
+            post = mMap!!.addMarker(MarkerOptions().position(location).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
+
+        }
+
 
 
 
         mMap.setOnMarkerClickListener { marker ->
-            val intent = Intent(activity, InspectPostActivity::class.java)
-            intent.putExtra("Title", marker.title)
-            startActivity(intent)
+            if (marker == post) {
+                startActivity(Intent(activity, PostActivity::class.java).putExtra("data", bundle))
+                var ft:FragmentTransaction = requireFragmentManager().beginTransaction()
+                ft.detach(this).attach(this).commit()
+            } else {
+                val intent = Intent(activity, InspectPostActivity::class.java)
+                intent.putExtra("data", marker.title)
+                startActivity(intent)
+            }
             true
         }
 

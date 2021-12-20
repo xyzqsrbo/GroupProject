@@ -1,6 +1,7 @@
 package com.example.groupproject
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.graphics.BitmapFactory
 
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.widget.*
+import com.example.groupproject.profile_page.Post
 import com.example.groupproject.profile_page.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_post.*
 import java.io.File
 import java.sql.Timestamp
 import java.util.Date
@@ -50,6 +53,7 @@ class InspectPostActivity : AppCompatActivity() {
     private lateinit var usersImage: ImageView
     private lateinit var date: Timestamp
     private lateinit var auth: FirebaseAuth
+    var postName: String? = null
     // var user: User?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +75,25 @@ class InspectPostActivity : AppCompatActivity() {
        // val first = db.collection("Post").whereEqualTo("username", username)
         val first = db.collection("Post").orderBy("timestamp")
         first.whereEqualTo("uid", auth.currentUser!!.uid)
-        getNext(first, db, 2) // This is the original pop up
+        //getNext(first, db, 2) // This is the original pop up
+        postName = intent.getSerializableExtra("data").toString()
+        val imageName = postName
+        val storageRef = FirebaseStorage.getInstance().reference.child("Images/$imageName")
+        val localFile = File.createTempFile("tempImage", "jpeg")
+        storageRef.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            usersImage.setImageBitmap(bitmap)
+        }
+        db.collection("Post").whereEqualTo("Name", imageName).get().addOnSuccessListener { result ->
+            for(document in result){
+                locationTextView.text = document.getString("Name").toString()
+                descriptionTextView.text = document.getString("description").toString()
+                dislikeIncrementer.text = document.get("dislikes").toString()
+                likeIncrementer.text = document.get("likes").toString()
+            }
+        }.addOnFailureListener { exception ->
+            Toast.makeText(this, "This failed", Toast.LENGTH_SHORT).show()
+        }/*
         getPostSizeAsync(first) { postSize ->
             nextArrow.setOnClickListener {
                 nextClicker++
@@ -81,6 +103,7 @@ class InspectPostActivity : AppCompatActivity() {
                 getNext(first, db, nextClicker)
             }
         }
+        */
         // When clicked, it increments the like count
         likeButton.setOnClickListener {
             if (!liked) {
@@ -92,6 +115,14 @@ class InspectPostActivity : AppCompatActivity() {
                 }
                 likeCounter++
                 likeIncrementer.setText("$likeCounter")
+
+            }
+            db.collection("Post").whereEqualTo("Name", imageName).get().addOnSuccessListener{ result ->
+                for(document in result){
+                    document.reference.update("likes", likeCounter, "dislikes", dislikeCounter)
+                }
+            }.addOnFailureListener { exception ->
+                Toast.makeText(this, "This failed", Toast.LENGTH_SHORT).show()
             }
         }
         // When clicked, it decrements the dislike counts
@@ -106,7 +137,15 @@ class InspectPostActivity : AppCompatActivity() {
                 dislikeCounter++
                 dislikeIncrementer.setText("$dislikeCounter")
             }
+            db.collection("Post").whereEqualTo("Name", imageName).get().addOnSuccessListener{ result ->
+                for(document in result){
+                    document.reference.update("likes", likeCounter, "dislikes", dislikeCounter)
+                }
+            }.addOnFailureListener { exception ->
+                Toast.makeText(this, "This failed", Toast.LENGTH_SHORT).show()
+            }
         }
+        /*
         // This is for the previous button clicker
         previousArrow.setOnClickListener {
             if(nextClicker > 1)
@@ -115,10 +154,12 @@ class InspectPostActivity : AppCompatActivity() {
                 getNext(first, db, nextClicker)
             }
         }
+         */
     }
     private fun getNext(first: Query, db: FirebaseFirestore, indexFam: Int) {
     //    var username: String = intent.getStringExtra("data")!!.toString()
         first.get().addOnSuccessListener { queryDocumentSnapshots ->
+
             val lastVisible = queryDocumentSnapshots.documents[queryDocumentSnapshots.size() - indexFam]
          //   val next = db.collection("Post").whereEqualTo("username", username).startAfter(lastVisible).limit(1)
             val next = db.collection("Post").whereEqualTo("uid", auth.currentUser!!.uid).startAfter(lastVisible).limit(1)

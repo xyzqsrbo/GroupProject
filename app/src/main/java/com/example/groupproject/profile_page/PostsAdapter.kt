@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.util.Log
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.post.view.*
@@ -18,6 +19,9 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import com.example.groupproject.R
 import com.example.groupproject.search_page.SearchActivity
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.profile_page.*
+import java.io.File
 
 /**
  * This class is the recycler view adapter to the posts
@@ -50,9 +54,16 @@ class PostsAdapter(val clickedItem: ClickedItem) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var post = postList[position]
+        val imageName = post.postId
+        val storageRef = FirebaseStorage.getInstance().reference.child("Images/$imageName")
+        val localFile = File.createTempFile("tempImage", "jpeg")
+        storageRef.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            holder.image.setImageBitmap(bitmap)
+        }
 
-        holder.image.setImageResource(post.picture)
-        holder.username.text = post.username
+        //holder.image.setImageResource(post.picture)
+        holder.username.text = post.postId
 
         holder.itemView.setOnClickListener {
             clickedItem.clickedItem(post)

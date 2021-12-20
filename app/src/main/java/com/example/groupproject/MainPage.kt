@@ -65,7 +65,6 @@ class MainPage : AppCompatActivity() {
 
             when(it.itemId){
                 R.id.DorasMap -> selectDrawerItem(BlankFragment(), "World" )
-                R.id.cheapSkate -> selectDrawerItem(PostActivity(), "Post" )
                 R.id.personal -> selectDrawerItem(ProfileActivity(), "Profile")
             }
             true
@@ -81,6 +80,7 @@ class MainPage : AppCompatActivity() {
         }
 
     }
+
 
 
 
