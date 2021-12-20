@@ -37,7 +37,7 @@ Search people
   Kotlin: https://github.com/xyzqsrbo/GroupProject/tree/master/app/src/main/java/com/example/groupproject/search_page
   XML: https://github.com/xyzqsrbo/GroupProject/blob/master/app/src/main/res/layout/activity_searched_profile.xml 
 
-Settings main page 
+Settings main page
   Kotlin: https://github.com/xyzqsrbo/GroupProject/blob/master/app/src/main/java/com/example/groupproject/settings_main.kt
   XML: https://github.com/xyzqsrbo/GroupProject/blob/master/app/src/main/res/layout/fragment_settings_main.xml  
 
