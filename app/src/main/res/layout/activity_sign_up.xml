@@ -42,10 +42,10 @@
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toEndOf="@+id/signin"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextLname"
-        app:layout_constraintVertical_bias="0.137" />
+        app:layout_constraintVertical_bias="0.608" />
 
     <Button
         android:id="@+id/signin"
@@ -54,10 +54,10 @@
         android:text="Sign In"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.299"
+        app:layout_constraintHorizontal_bias="0.289"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextLname"
-        app:layout_constraintVertical_bias="0.137" />
+        app:layout_constraintVertical_bias="0.608" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -114,5 +114,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextFname"
         app:layout_constraintVertical_bias="0.063" />
+
+    <EditText
+        android:id="@+id/editTextTextBio"
+        android:layout_width="272dp"
+        android:layout_height="134dp"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textCapSentences|textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextFname"
+        app:layout_constraintVertical_bias="0.293"
+        android:maxLength="128"
+        android:scrollHorizontally="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
