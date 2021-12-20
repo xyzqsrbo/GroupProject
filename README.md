@@ -4,7 +4,7 @@ Installation
   1. Pull repository from github into android studio
   2. Run the project
 
-Android version
+Android version:
   Version 19 Kit Kat
 
 Pages
