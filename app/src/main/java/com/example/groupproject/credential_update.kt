@@ -1,5 +1,6 @@
 package com.example.groupproject
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -52,12 +53,14 @@ class credential_update : Fragment() {
         password = view.findViewById(R.id.new_password)
         user = Firebase.auth.currentUser!!
 
-        // updates user credentials and redirects them to settings_main fragment
+
         binding.buttonSecond.setOnClickListener {
 
             user.updateEmail(email.text.toString()).addOnCompleteListener {
                 user.updatePassword(password.text.toString()).addOnCompleteListener {
                     findNavController().navigate(R.id.action_Third2Fragment_to_First2Fragment)
+                    //send user back
+                    Toast.makeText(activity, "Changed Credentials!", Toast.LENGTH_SHORT).show()
                 }
 
             }

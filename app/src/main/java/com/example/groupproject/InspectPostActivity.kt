@@ -66,8 +66,6 @@ class InspectPostActivity : AppCompatActivity() {
         dislikeIncrementer = findViewById(R.id.dislikeIncrementer)
         locationTextView = findViewById(R.id.locationView)
         descriptionTextView = findViewById(R.id.description)
-        previousArrow = findViewById(R.id.backArrow)
-        nextArrow = findViewById(R.id.forwardArrow)
         usersImage = findViewById(R.id.usersImage)
         auth = FirebaseAuth.getInstance()
      //   var username: String = intent.getStringExtra("data")!!.toString()
