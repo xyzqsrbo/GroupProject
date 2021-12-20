@@ -34,6 +34,7 @@ class personal_update : Fragment() {
     private lateinit var oldUsername: String
     private lateinit var firstname: EditText
     private lateinit var lastname: EditText
+    private lateinit var description: EditText
     private lateinit var user: FirebaseUser
 
     // This property is only valid between onCreateView and
@@ -56,6 +57,7 @@ class personal_update : Fragment() {
         username = view.findViewById(R.id.personalUsername)
         firstname = view.findViewById(R.id.personalFirstname)
         lastname = view.findViewById(R.id.personalLastName)
+        description = view.findViewById(R.id.personalDescription)
         user = Firebase.auth.currentUser!!
         val db = Firebase.firestore
         db.collection("Account").get().addOnSuccessListener { result ->
@@ -64,6 +66,7 @@ class personal_update : Fragment() {
                     oldUsername = document.getString("username").toString()
                     firstname.setText(document.getString("first").toString())
                     lastname.setText(document.getString("last").toString())
+                    description.setText(document.getString("description").toString())
                     username.setText(oldUsername)
                     break
                 }
@@ -84,7 +87,8 @@ class personal_update : Fragment() {
                     if (document.getString("uid")!!.toString() == user.uid) {
                         document.reference.update("username", username.text.toString(),
                                                     "first", firstname.text.toString(),
-                                                "last",lastname.text.toString())
+                                                "last",lastname.text.toString(),
+                                                    "description", description.text.toString() )
                     }
                 }
             }

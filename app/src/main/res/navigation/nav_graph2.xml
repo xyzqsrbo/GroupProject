@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/PersonalFragment"
         android:name="com.example.groupproject.personal_update"
-        android:label="@string/second_fragment_label"
+        android:label="Details"
         tools:layout="@layout/fragment_user_update">
 
         <action
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/DeleteFragment"
         android:name="com.example.groupproject.delete_account"
-        android:label="@string/second_fragment_label"
+        android:label="Delete"
         tools:layout="@layout/fragment_delete_account">
 
         <action
@@ -72,7 +72,7 @@
     <fragment
         android:id="@+id/Third2Fragment"
         android:name="com.example.groupproject.credential_update"
-        android:label="@string/second_fragment_label"
+        android:label="Credentials"
         tools:layout="@layout/fragment_credential_update">
 
 

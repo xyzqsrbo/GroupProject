@@ -34,8 +34,8 @@
     </string>
     <string name="title_activity_settings">settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Settings</string>
+    <string name="second_fragment_label">Security Check</string>
     <string name="next">Update Profile</string>
     <string name="previous">Previous</string>
 

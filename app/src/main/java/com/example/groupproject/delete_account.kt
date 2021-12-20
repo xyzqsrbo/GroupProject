@@ -1,5 +1,6 @@
 package com.example.groupproject
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -67,13 +68,12 @@ class delete_account : Fragment() {
                     if (document.getString("uid")!!.toString() == uid) {
                         deletePosts(db, document.getString("username")!!.toString())
                         document.reference.delete()
+                        user.delete()
                         break
                     }
                 }
             }
-
-
-
+            startActivity(Intent(activity, LogInActivity::class.java))
         }
     }
 

@@ -56,12 +56,6 @@ class security_check : Fragment() {
         println(uid)
 
 
-
-        binding.buttonSecond.setOnClickListener {
-            println(email.text.toString())
-            findNavController().navigate(R.id.action_Second2Fragment_to_First2Fragment)
-        }
-
         binding.submit.setOnClickListener {
 
             credential = EmailAuthProvider.getCredential(email.text.toString(), password.text.toString())
